@@ -1,4 +1,4 @@
-# telemedicine-frontend
+# frontend
 
 ## Project setup
 ```
