@@ -2,13 +2,20 @@
   <v-app>
     <v-app-bar app color="primary" dark>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-      <v-toolbar-title>This should  be the current page name</v-toolbar-title>
+      <v-toolbar-title>{{ currentRouteName }}</v-toolbar-title>
+      <v-spacer></v-spacer>
+      About
+      <v-btn class="mr-2" to="/about" icon>
+        <v-icon >mdi-information-outline</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer
         v-model="drawer"
-        absolute
         temporary
+        absolute
+        clipped
+        app
       >
         <v-list
           nav
@@ -50,5 +57,10 @@ export default Vue.extend({
   data: () => ({
     drawer: false
   }),
+  computed: {
+    currentRouteName() {
+        return this.$route.name;
+    }
+  }
 });
 </script>
