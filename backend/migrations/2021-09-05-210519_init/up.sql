@@ -1,3 +1,4 @@
+-- Your SQL goes here
 CREATE TABLE users ( 
     uuid                    CHAR(36)         NOT NULL PRIMARY KEY, 
     username                varchar(256)    NOT NULL UNIQUE,
@@ -20,12 +21,4 @@ CREATE TABLE users (
     security_stamp          TEXT            NOT NULL,
 
     scope                   TEXT            NOT NULL
-);
-
-CREATE TABLE totp (
-    uuid        CHAR(36)    NOT NULL PRIMARY KEY,
-    user_uuid   CHAR(36)    NOT NULL REFERENCES users(uuid),
-    type        TEXT        NOT NULL,
-    secret      TEXT        NOT NULL,
-    recover     TEXT        NOT NULL
 );

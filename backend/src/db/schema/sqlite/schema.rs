@@ -1,10 +1,10 @@
 table! {
     users (uuid) {
-        uuid -> Char,
-        username -> Varchar,
+        uuid -> Text,
+        username -> Text,
         password_hint -> Nullable<Text>,
-        password_hash -> Blob,
-        salt -> Blob,
+        password_hash -> Binary,
+        salt -> Binary,
         password_iterations -> Integer,
         kdf_type -> Integer,
         kdf_iterations -> Integer,
@@ -18,7 +18,3 @@ table! {
         scope -> Text,
     }
 }
-
-allow_tables_to_appear_in_same_query!(
-    users,
-);
