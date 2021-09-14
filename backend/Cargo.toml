@@ -31,7 +31,8 @@ diesel_migrations = "1.4.0"
 dotenv = "0.15.0"
 
 # Bundled SQLite
-libsqlite3-sys = { version = "0.18.0", features = ["bundled"], optional = true }
+#libsqlite3-sys = { version = "0.22.2", features = ["bundled"], optional = true }
+libsqlite3-sys = { version = "^0", features = ["bundled"] }
 
 # qr code
 qrcode = "0.12.0"
