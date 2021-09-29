@@ -9,8 +9,8 @@
 
       <v-divider class="ma-4"></v-divider>
       
-      <a @click="$router.go(-1)" text>
-        Go back <v-icon class="ml-3">mdi-arrow-left</v-icon>
+      <a class="ml-5" @click="$router.go(-1)" text>
+        Go back <v-icon>mdi-arrow-left</v-icon>
       </a>
    </v-card>
   </div>
