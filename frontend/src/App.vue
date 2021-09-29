@@ -30,9 +30,44 @@
               <v-list-item-icon>
                 <v-icon>mdi-home</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>Home</v-list-item-title>
+              <v-list-item-title>Dashboard</v-list-item-title>
             </v-list-item>
   
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-calendar-clock</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Appointments</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-content-paste</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Reports</v-list-item-title>
+            </v-list-item>
+            
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-message-text-outline</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Messages</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-phone</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Voice Chat</v-list-item-title>
+            </v-list-item>
+            
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-help</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>FAQ</v-list-item-title>
+            </v-list-item>
+
             <v-list-item>
               <v-list-item-icon>
                 <v-icon>mdi-account</v-icon>
@@ -64,8 +99,8 @@ export default Vue.extend({
         return this.$route.name;
     },
     userIsLoggedIn() {
-      // This needs to be replaced with validation for whether or not a user is logged in
-      return false;
+      // This needs to be replaced with validation for whether or not a user is logged in (set to true temporarily for testing)
+      return true;
     }
   }
 });

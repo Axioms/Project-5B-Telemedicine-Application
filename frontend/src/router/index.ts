@@ -7,6 +7,7 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import PatientPortal from "../views/PatientPortal.vue";
 import ProviderPortal from "../views/ProviderPortal.vue";
+import Appointments from "../views/Appointments.vue";
 
 Vue.use(VueRouter);
 
@@ -28,7 +29,8 @@ const routes: Array<RouteConfig> = [
   {
     path: "/patientPortal",
     name: "Patient Portal",
-    component: PatientPortal
+    //component: PatientPortal (swapped for testing cause I'm still trying to figure view routing)
+    component: Appointments
   },
   {
     path: "/providerPortal",
