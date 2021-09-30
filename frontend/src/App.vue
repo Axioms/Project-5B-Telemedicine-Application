@@ -35,7 +35,6 @@
         <!-- patient navigation options -->
             <v-list-item v-if="isPatient">
               <v-list-item-icon>
-<<<<<<< HEAD
                 <!-- icon here -->
               </v-list-item-icon>
               <v-list-item-title>Request an appointment</v-list-item-title>
@@ -53,17 +52,10 @@
                 <!-- icon here -->
               </v-list-item-icon>
               <v-list-item-title>Calendar</v-list-item-title>
-=======
-                <v-icon>mdi-account</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>Account</v-list-item-title>
-
->>>>>>> 37f83c75adbbdb4685372ce026472742ab3ad4b8
             </v-list-item>
 
             <v-list-item v-if="isPatient">
               <v-list-item-icon>
-<<<<<<< HEAD
                 <!-- icon here -->
               </v-list-item-icon>
               <v-list-item-title>Doctor Chat</v-list-item-title>
@@ -74,12 +66,6 @@
                 <!-- icon here -->
               </v-list-item-icon>
               <v-list-item-title>Resources</v-list-item-title>
-=======
-                <v-icon>mdi-calendar</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>Request Appointment</v-list-item-title>
-
->>>>>>> 37f83c75adbbdb4685372ce026472742ab3ad4b8
             </v-list-item>
 
 
@@ -126,7 +112,6 @@
               <v-list-item-title>Education</v-list-item-title>
             </v-list-item>
 
-            </v-list-item>
           </v-list-item-group>
         </v-list>
       </v-navigation-drawer>
@@ -149,7 +134,6 @@ export default Vue.extend({
   computed: {
     currentRouteName() {
         return this.$route.name;
-<<<<<<< HEAD
     },
     userIsLoggedIn() {
       return this.$store.getters.getIsLoggedIn;
@@ -159,8 +143,6 @@ export default Vue.extend({
     },
     isProvider() {
       return this.$store.getters.getIsProvider;
-=======
->>>>>>> 37f83c75adbbdb4685372ce026472742ab3ad4b8
     }
   }
 });
