@@ -22,17 +22,16 @@
           dense
         >
           <v-list-item-group
-            
             active-class="deep-purple--text text--accent-4"
           >
-            <v-list-item>
+        <!-- patient navigation options -->
+            <v-list-item v-if="isPatient" to="/patientPortal">
               <v-list-item-icon>
                 <v-icon>mdi-home</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Home</v-list-item-title>
             </v-list-item>
 
-        <!-- patient navigation options -->
             <v-list-item v-if="isPatient">
               <v-list-item-icon>
                 <!-- icon here -->
@@ -70,6 +69,13 @@
 
 
         <!-- provider navigation options -->
+            <v-list-item v-if="isProvider" to="/providerPortal">
+              <v-list-item-icon>
+                <v-icon>mdi-home</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Home</v-list-item-title>
+            </v-list-item>
+
             <v-list-item v-if="isProvider">
               <v-list-item-icon>
                 <!-- icon here -->
