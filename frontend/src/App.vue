@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon v-if="userIsLoggedIn" @click="drawer = true"></v-app-bar-nav-icon>
       <v-toolbar-title>{{ currentRouteName }}</v-toolbar-title>
       <v-spacer></v-spacer>
       About
@@ -32,9 +32,9 @@
               <v-list-item-title>Home</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-if="isPatient">
+            <v-list-item v-if="isPatient" to="/requestAppointments">
               <v-list-item-icon>
-                <!-- icon here -->
+                <v-icon>mdi-calendar</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Request an appointment</v-list-item-title>
             </v-list-item>

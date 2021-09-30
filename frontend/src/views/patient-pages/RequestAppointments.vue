@@ -1,7 +1,7 @@
 <!-- no routing yet for this view -->
 
 <template>
-  <div class="appointments">
+  <div class="requestAppointments">
     <v-card elevation="0" class="mx-auto mt-5" max-width="60%">
         <h1 class="text-center mt-4">Sceduling Appointment</h1>
         <p class="text-center mt-4">Select a day to view available times.</p>
