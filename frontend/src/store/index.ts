@@ -21,18 +21,18 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    setIsLoggedIn(context, status){
-      context.isLoggedIn = status;
-    },
-    setIsPatient(context, status) {
-      context.isPatient = status;
-    },
-    setIsProvider(context, status) {
-      context.isProvider = status;
-    }
+   
   },
   actions: {
-    
+    setIsLoggedIn(context, status){
+      context.state.isLoggedIn = status;
+    },
+    setIsPatient(context, status) {
+      context.state.isPatient = status;
+    },
+    setIsProvider(context, status) {
+      context.state.isProvider = status;
+    }
   },
   modules: {},
 });

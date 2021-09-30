@@ -4,6 +4,7 @@
 import Options from "vue-class-component";
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from 'vuex';
 
 @Options({
   components: {
@@ -11,7 +12,10 @@ import VueRouter from 'vue-router';
   },
 })
 export default class ProviderPortal extends Vue {
-
+    mounted() {
+        this.$store.dispatch('setIsLoggedIn', true);
+        this.$store.dispatch('setIsProvider', true);
+    }
 
 }
 </script>

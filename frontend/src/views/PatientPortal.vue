@@ -11,7 +11,9 @@ import VueRouter from 'vue-router';
   },
 })
 export default class PatientPortal extends Vue {
-
-
+    mounted() {
+        this.$store.dispatch('setIsLoggedIn', true);
+        this.$store.dispatch('setIsPatient', true);
+    }
 }
 </script>

@@ -30,7 +30,7 @@ const routes: Array<RouteConfig> = [
     path: "/patientPortal",
     name: "Patient Portal",
     //component: PatientPortal (swapped for testing cause I'm still trying to figure view routing)
-    component: Appointments
+    component: PatientPortal
   },
   {
     path: "/providerPortal",
