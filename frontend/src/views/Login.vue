@@ -16,6 +16,12 @@ export default class Login extends Vue {
   password = '';
   userType = '';
 
+  mounted() {
+    this.$store.dispatch('setIsLoggedIn', false);
+    this.$store.dispatch('setIsProvider', false);
+    this.$store.dispatch('setIsPatient', false);
+  }
+
 
   // This needs to be updated to support actual login, but for now I'm just having it navigate to the next page
   submitLoginForm (){
