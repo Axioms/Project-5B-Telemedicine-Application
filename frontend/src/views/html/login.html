@@ -17,11 +17,15 @@
             ></v-text-field>
           
             <!-- password field -->
-            <v-text-field
+            <v-text-field type="password"
               v-model="password"
+              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="show1 ? 'text' : 'password'"
               label="Password"
               required
               outlined
+              counter
+              @click:append="show1 = !show1"
             ></v-text-field>
           </v-card-text>
 

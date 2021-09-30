@@ -15,6 +15,9 @@ export default class Login extends Vue {
   username = '';
   password = '';
   userType = '';
+  show1 = false;
+
+
 
   mounted() {
     this.$store.dispatch('setIsLoggedIn', false);
