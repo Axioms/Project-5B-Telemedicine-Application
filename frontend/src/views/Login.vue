@@ -35,5 +35,8 @@ export default class Login extends Vue {
       this.$router.push('providerPortal');
     }
   }
+  submitRegistrationForm (){
+    this.$router.push('registration');
+  }
 }
 </script>

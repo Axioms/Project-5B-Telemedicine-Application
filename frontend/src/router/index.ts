@@ -8,6 +8,7 @@ import Login from "../views/Login.vue";
 import PatientPortal from "../views/PatientPortal.vue";
 import ProviderPortal from "../views/ProviderPortal.vue";
 import RequestAppointments from "../views/./patient-pages/RequestAppointments.vue";
+import Registration from "@/views/Registration.vue";
 
 Vue.use(VueRouter);
 
@@ -40,7 +41,12 @@ const routes: Array<RouteConfig> = [
     path: "/providerPortal",
     name: "Provider Portal",
     component: ProviderPortal
-  }
+  },
+  {
+    path: "/registration",
+    name: "Registration",
+    component: Registration
+  },
   
 ];
 

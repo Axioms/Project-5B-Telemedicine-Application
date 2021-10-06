@@ -32,6 +32,13 @@
               <v-list-item-title>Home</v-list-item-title>
             </v-list-item>
 
+            <v-list-item v-if="isPatient" to="/patientPortal">
+              <v-list-item-icon>
+                <v-icon>mdi-account</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Account</v-list-item-title>
+            </v-list-item>
+
             <v-list-item v-if="isPatient" to="/requestAppointments">
               <v-list-item-icon>
                 <v-icon>mdi-calendar</v-icon>

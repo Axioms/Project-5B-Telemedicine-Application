@@ -60,6 +60,15 @@
             >
               Log in
             </v-btn>
+
+              <v-btn
+                      :disabled="!validLoginForm"
+                      color="success"
+                      @click="submitRegistrationForm"
+                      large
+              >
+                  Register
+              </v-btn>
         </v-card-actions>
       </v-form>
     </v-card>
