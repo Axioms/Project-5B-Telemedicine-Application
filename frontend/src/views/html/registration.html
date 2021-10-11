@@ -49,13 +49,14 @@
                           required
                         ></v-text-field>
 
-                        <input type="radio" id="patient" value="Patient" v-model="picked">
+                        <input type="radio" id="patient" value="Patient" v-model="picked" required>
                         <label for="patient">Patient</label>
                         <br>
                         <input type="radio" id="provider" value="Provider" v-model="picked">
                         <label for="provider">Provider</label>
                         <br>
                         <span>Picked: {{ picked }}</span>
+
                     </v-card-text>
 
 
@@ -70,7 +71,7 @@
                         <v-btn
                                 color="success"
                                 text
-                                @click="submit"
+                                @click.prevent="signUpRequest"
                         >
                             Submit
                         </v-btn>

@@ -9,6 +9,7 @@ import PatientPortal from "../views/PatientPortal.vue";
 import ProviderPortal from "../views/ProviderPortal.vue";
 import RequestAppointments from "../views/./patient-pages/RequestAppointments.vue";
 import Registration from "@/views/Registration.vue";
+import Account from "@/views/Account.vue";
 
 Vue.use(VueRouter);
 
@@ -47,7 +48,11 @@ const routes: Array<RouteConfig> = [
     name: "Registration",
     component: Registration
   },
-  
+  {
+    path: "/account",
+    name: "account",
+    component: Account
+  },
 ];
 
 const router = new VueRouter({

@@ -4,6 +4,9 @@
 import Options from "vue-class-component";
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import "firebase/compat/firestore";
+import firebase from "firebase/compat/app"
+import "firebase/compat/auth"
 
 @Options({
   components: {
@@ -12,11 +15,12 @@ import VueRouter from 'vue-router';
 })
 export default class Login extends Vue {
   validLoginForm = true;
-  username = '';
+  email = '';
   password = '';
   userType = '';
   show1 = false;
-
+  error = false;
+  errorMsg = "";
 
 
   mounted() {
@@ -29,14 +33,49 @@ export default class Login extends Vue {
   // This needs to be updated to support actual login, but for now I'm just having it navigate to the next page
   submitLoginForm (){
     if(this.userType=="patient"){
-      this.$router.push('patientPortal');
+
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+      .then(() =>
+      {
+        this.error = false;
+        this.errorMsg = "";
+        this.$router.push('patientPortal')
+        return;
+      })
+          .catch(err =>{
+
+            this.error = true;
+            this.errorMsg = err.message;
+          });
+
     }
     else if(this.userType=="provider"){
-      this.$router.push('providerPortal');
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+          .then(() =>
+          {
+            this.error = false;
+            this.errorMsg = "";
+            this.$router.push('providerPortal');
+            return;
+          })
+      .catch(err =>{
+
+        this.error = true;
+        this.errorMsg = err.message;
+          });
+
     }
+
+
   }
   submitRegistrationForm (){
     this.$router.push('registration');
   }
+
+
 }
 </script>
+
+<style>
+
+</style>
