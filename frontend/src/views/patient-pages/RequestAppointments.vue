@@ -1,5 +1,3 @@
-<!-- no routing yet for this view -->
-
 <template>
   <div class="requestAppointments">
     <v-card elevation="0" class="mx-auto mt-5" max-width="60%">
