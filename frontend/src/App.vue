@@ -141,6 +141,9 @@
 
 <script lang="ts">
 import Vue from "vue";
+import "firebase/compat/firestore";
+import firebase from "firebase/compat/app"
+import "firebase/compat/auth"
 
 export default Vue.extend({
   name: "App",
