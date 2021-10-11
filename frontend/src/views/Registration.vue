@@ -24,7 +24,7 @@ export default class Registration extends Vue {
   firstname ='';
   lastname = '';
   picked = '';
-  error = null;
+  error = false;
   errorMsg = "";
 
 
@@ -42,12 +42,19 @@ export default class Registration extends Vue {
   {
     if(this.email == "" || this.firstname == "" || this.lastname == "" || this.password == "" ||this.picked == "")
     {
-      alert('Please fill in all the fields');
+      this.error = true;
+      this.errorMsg = "Fill out all the fields"
+
     }
     else
     {
       const firebaseAuth = await firebase.auth();
-      const createUser = await firebaseAuth.createUserWithEmailAndPassword(this.email, this.password);
+      const createUser = await firebaseAuth.createUserWithEmailAndPassword(this.email, this.password)
+    .catch((error) => {
+      this.error = true;
+      this.errorMsg = error.message;
+
+    })
       const result = await createUser;
       const dataBase = db.collection("users").doc(result.user.uid);
       await dataBase.set({
@@ -57,6 +64,8 @@ export default class Registration extends Vue {
         email: this.email,
       })
       alert('Account created for '+this.email);
+      this.error = false;
+      this.errorMsg ="";
       await this.$router.push('/');
     }
 
@@ -68,9 +77,5 @@ export default class Registration extends Vue {
 </script>
 
 <style>
-.error{
-  text-align: center;
-  font-size: 12px;
-  color: red;
-}
+
 </style>
