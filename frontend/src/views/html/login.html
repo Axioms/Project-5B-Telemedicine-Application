@@ -10,8 +10,8 @@
             
             <!-- username field -->
             <v-text-field
-              v-model="username"
-              label="Username"
+              v-model="email"
+              label="Email"
               required
               outlined
             ></v-text-field>
@@ -28,7 +28,7 @@
               @click:append="show1 = !show1"
             ></v-text-field>
           </v-card-text>
-
+          <div v-show="error" class ="error" style="color: black">{{this.errorMsg}}</div>
           <v-divider></v-divider>
           
           <v-card-actions class="pl-6 pr-6">
@@ -64,7 +64,7 @@
               <v-btn
                       :disabled="!validLoginForm"
                       color="success"
-                      @click="submitRegistrationForm"
+                      @click.prevent="submitRegistrationForm"
                       large
               >
                   Register
