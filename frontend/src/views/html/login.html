@@ -28,8 +28,20 @@
             ></v-text-field>
           </v-card-text>
           <div v-show="error" class ="error" style="color: black">{{this.errorMsg}}</div>
+
+
+                  <v-btn
+                          x-small
+                          color="secondary"
+                          dark
+                          @click="resetPassword"
+                  >
+                      Forgot Password
+                  </v-btn>
+
           <v-divider></v-divider>
-          
+
+
           <v-card-actions class="pl-6 pr-6">
             <!-- user type selection -->
             <h2>Log in as:</h2>

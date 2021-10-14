@@ -10,8 +10,11 @@ import ProviderPortal from "../views/ProviderPortal.vue";
 import RequestAppointments from "../views/./patient-pages/RequestAppointments.vue";
 import Registration from "@/views/Registration.vue";
 import Account from "@/views/Account.vue";
+import firebase from "firebase/compat";
 
 Vue.use(VueRouter);
+
+
 
 const routes: Array<RouteConfig> = [
   {
@@ -58,5 +61,21 @@ const routes: Array<RouteConfig> = [
 const router = new VueRouter({
   routes,
 });
+
+/*
+router.beforeEach((to,from,next) => {
+  if(to.matched.some(record => record.meta.auth)){
+    firebase.auth().onAuthStateChanged((user) => {
+      if(!user)
+      {
+        next({
+          path: '/'
+
+        })
+      } else {
+        next()
+      }
+    })}else next()
+})*/
 
 export default router;

@@ -8,6 +8,14 @@
       <v-btn class="mr-2" to="/about" icon>
         <v-icon >mdi-information-outline</v-icon>
       </v-btn>
+      <div class = "profile" ref ="profile">
+        <span>
+          {{this.$store.state.profileFirstName+" "+this.$store.state.profileLastName}}
+        </span>
+      </div>
+
+
+
     </v-app-bar>
 
     <v-navigation-drawer
@@ -76,8 +84,21 @@
                 <v-icon>mdi-file-word-outline</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Resources</v-list-item-title>
+
             </v-list-item>
 
+            <v-list-item v-if="isPatient">
+
+
+              <v-btn
+                  large
+                  color="secondary"
+                  dark
+                  @click="signOut"
+              >
+                log out
+              </v-btn>
+            </v-list-item>
 
         <!-- provider navigation options -->
             <v-list-item v-if="isProvider" to="/providerPortal">
@@ -129,6 +150,18 @@
               <v-list-item-title>Education</v-list-item-title>
             </v-list-item>
 
+            <v-list-item v-if="isProvider">
+              <v-btn
+                  large
+                  color="secondary"
+                  dark
+                  @click="signOut"
+              >
+                log out
+              </v-btn>
+
+            </v-list-item>
+
           </v-list-item-group>
         </v-list>
       </v-navigation-drawer>
@@ -145,8 +178,12 @@ import "firebase/compat/firestore";
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 
+
+
 export default Vue.extend({
   name: "App",
+
+
 
   data: () => ({
     drawer: false
@@ -163,7 +200,31 @@ export default Vue.extend({
     },
     isProvider() {
       return this.$store.getters.getIsProvider;
+    },
+
+  },
+  created() {
+    firebase.auth().onAuthStateChanged((user) =>
+        {
+          this.$store.commit("updateUser", user);
+          if(user)
+          {
+            this.$store.dispatch("getCurrentUser");
+            console.log(this.$store.state.profileEmail);
+          }
+        })
+  },
+  methods:
+  {
+    async signOut()
+    {
+      await firebase.auth().signOut();
+      await this.$router.push('/')
+      await location.reload();
+
     }
   }
+
+
 });
 </script>

@@ -27,9 +27,27 @@ export default firebaseApp.firestore();
 
 Vue.config.productionTip = false;
 
+let app: any;
+
+
+    firebase.auth().onAuthStateChanged(() =>{
+      if(!app) {
+        new Vue({
+          router,
+          store,
+          vuetify,
+          render: (h) => h(App),
+        }).$mount("#app");
+      }
+    });
+
+
+
+/*
 new Vue({
   router,
   store,
   vuetify,
   render: (h) => h(App),
 }).$mount("#app");
+*/
