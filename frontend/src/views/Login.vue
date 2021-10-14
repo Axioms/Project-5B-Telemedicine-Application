@@ -72,6 +72,28 @@ export default class Login extends Vue {
     this.$router.push('registration');
   }
 
+  resetPassword (){
+    if(this.email == "")
+    {
+      this.error = true;
+      this.errorMsg = "Type an email to reset password"
+    }
+    else
+    {
+      firebase.auth().sendPasswordResetEmail(this.email)
+      .then(() =>{
+        alert("You will receive an email to reset password if an account exists")
+        this.error = false;
+          })
+      .catch((err) => {
+        this.email = "";
+        this.error = true;
+        this.errorMsg = err;
+
+      })
+    }
+  }
+
 
 }
 </script>
