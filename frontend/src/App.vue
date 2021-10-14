@@ -54,7 +54,7 @@
               <v-list-item-title>Request an appointment</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-if="isPatient">
+            <v-list-item v-if="isPatient" to="/patientReports">
               <v-list-item-icon>
                 <!-- icon here -->
                 <v-icon>mdi-content-save</v-icon>
@@ -62,7 +62,7 @@
               <v-list-item-title>View reports</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-if="isPatient">
+            <v-list-item v-if="isPatient" to="/patientCalendar">
               <v-list-item-icon>
                 <!-- icon here -->
                 <v-icon>mdi-calendar</v-icon>
@@ -70,7 +70,7 @@
               <v-list-item-title>Calendar</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-if="isPatient">
+            <v-list-item v-if="isPatient" to="/docChat">
               <v-list-item-icon>
                 <!-- icon here -->
                 <v-icon>mdi-chat</v-icon>
@@ -78,7 +78,7 @@
               <v-list-item-title>Doctor Chat</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-if="isPatient">
+            <v-list-item v-if="isPatient" to="/resources">
               <v-list-item-icon>
                 <!-- icon here -->
                 <v-icon>mdi-file-word-outline</v-icon>
@@ -88,8 +88,6 @@
             </v-list-item>
 
             <v-list-item v-if="isPatient">
-
-
               <v-btn
                   large
                   color="secondary"
@@ -108,42 +106,42 @@
               <v-list-item-title>Home</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-if="isProvider">
+            <v-list-item v-if="isProvider" to="/scheduleAppointment">
               <v-list-item-icon>
                 <!-- icon here -->
               </v-list-item-icon>
               <v-list-item-title>Schedule appointment</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-if="isProvider">
+            <v-list-item v-if="isProvider" to="/providerReports">
               <v-list-item-icon>
                 <!-- icon here -->
               </v-list-item-icon>
               <v-list-item-title>View reports</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-if="isProvider">
+            <v-list-item v-if="isProvider" to="/providerCalendar">
               <v-list-item-icon>
                 <!-- icon here -->
               </v-list-item-icon>
               <v-list-item-title>Calendar</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-if="isProvider">
+            <v-list-item v-if="isProvider" to="/scheduleCall">
               <v-list-item-icon>
                 <!-- icon here -->
               </v-list-item-icon>
               <v-list-item-title>Schedule a call</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-if="isProvider">
+            <v-list-item v-if="isProvider" to="patientChat">
               <v-list-item-icon>
                 <!-- icon here -->
               </v-list-item-icon>
               <v-list-item-title>Patient Chat</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-if="isProvider">
+            <v-list-item v-if="isProvider" to="/education">
               <v-list-item-icon>
                 <!-- icon here -->
               </v-list-item-icon>

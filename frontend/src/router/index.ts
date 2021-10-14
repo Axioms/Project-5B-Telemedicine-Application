@@ -12,6 +12,17 @@ import Registration from "@/views/Registration.vue";
 import Account from "@/views/Account.vue";
 import firebase from "firebase/compat";
 
+import PatientCalendar from "../views/patient-pages/Calendar.vue";
+import DocChat from "../views/patient-pages/DocChat.vue";
+import PatientReports from "../views/patient-pages/Reports.vue";
+import Resources from "../views/patient-pages/Resources.vue";
+import ScheduleAppointment from "../views/provider-pages/ScheduleAppointments.vue";
+import ProviderCalendar from "../views/provider-pages/Calendar.vue";
+import ProviderReports from "../views/provider-pages/Reports.vue";
+import ScheduleCall from "../views/provider-pages/ScheduleCall.vue";
+import PatientChat from "../views/provider-pages/PatientChat.vue";
+import Education from "../views/provider-pages/Education.vue";
+
 Vue.use(VueRouter);
 
 
@@ -31,6 +42,8 @@ const routes: Array<RouteConfig> = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
+
+  // Patient pages
   {
     path: "/patientPortal",
     name: "Patient Portal",
@@ -42,10 +55,64 @@ const routes: Array<RouteConfig> = [
     component: RequestAppointments
   },
   {
+    path: "/patientCalendar",
+    name: "Patient Calendar",
+    component: PatientCalendar
+  },
+  {
+    path: "/docChat",
+    name: "Chat with your doctor",
+    component: DocChat
+  },
+  {
+    path: "/patientReports",
+    name: "Patient Reports",
+    component: PatientReports
+  },
+  {
+    path: "/resources",
+    name: "Patient Resources",
+    component: Resources
+  },
+
+  // Provider pages
+  {
     path: "/providerPortal",
     name: "Provider Portal",
     component: ProviderPortal
   },
+  {
+    path: "/scheduleAppointment",
+    name: "Schedule an Appointment",
+    component: ScheduleAppointment
+  },
+  {
+    path: "/providerCalendar",
+    name: "Provider Calendar",
+    component: ProviderCalendar
+  },
+  {
+    path: "/providerReports",
+    name: "Provider Reports",
+    component: ProviderReports
+  },
+  {
+    path: "/scheduleCall",
+    name: "Schedule a Call",
+    component: ScheduleCall
+  },
+  {
+    path: "/patientChat",
+    name: "Patient Chat",
+    component: PatientChat
+  },
+  {
+    path: "/education",
+    name: "Education",
+    component: Education
+  },
+
+  // Login/registration
   {
     path: "/registration",
     name: "Registration",
@@ -53,7 +120,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/account",
-    name: "account",
+    name: "Account",
     component: Account
   },
 ];
