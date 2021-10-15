@@ -14,8 +14,6 @@
         </span>
       </div>
 
-
-
     </v-app-bar>
 
     <v-navigation-drawer
@@ -87,16 +85,16 @@
 
             </v-list-item>
 
-            <v-list-item v-if="isPatient">
-              <v-btn
-                  large
-                  color="secondary"
-                  dark
-                  @click="signOut"
-              >
-                log out
-              </v-btn>
+            <v-list-item v-if="isPatient" @click="signOut">
+              <v-list-item-icon>
+                <!-- icon here -->
+                <v-icon>mdi-logout</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Log out</v-list-item-title>
+
             </v-list-item>
+
+
 
         <!-- provider navigation options -->
             <v-list-item v-if="isProvider" to="/providerPortal">
@@ -104,6 +102,13 @@
                 <v-icon>mdi-home</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Home</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item v-if="isProvider" to="/account">
+              <v-list-item-icon>
+                <v-icon>mdi-account</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Account</v-list-item-title>
             </v-list-item>
 
             <v-list-item v-if="isProvider" to="/scheduleAppointment">
@@ -148,15 +153,13 @@
               <v-list-item-title>Education</v-list-item-title>
             </v-list-item>
 
-            <v-list-item v-if="isProvider">
-              <v-btn
-                  large
-                  color="secondary"
-                  dark
-                  @click="signOut"
-              >
-                log out
-              </v-btn>
+
+            <v-list-item v-if="isProvider" @click="signOut">
+              <v-list-item-icon>
+                <!-- icon here -->
+                <v-icon>mdi-logout</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Log out</v-list-item-title>
 
             </v-list-item>
 
