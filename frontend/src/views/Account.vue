@@ -14,7 +14,9 @@ import "firebase/compat/auth"
 })
 export default class Account extends Vue
 {
-
+  firstname =this.$store.state.profileFirstName;
+  email = this.$store.state.profileEmail;
+  lastname = this.$store.state.profileLastName;
 }
 
 </script>
