@@ -1,10 +1,11 @@
 use chrono::{NaiveDateTime, Utc};
 use crate::utils;
-#[derive(Debug, Identifiable, Queryable, Insertable, AsChangeset)]
+use diesel::prelude::*;
+
+#[derive(Debug, Identifiable, Queryable, QueryableByName, Insertable, AsChangeset)]
 #[table_name = "users"]
 #[changeset_options(treat_none_as_null="true")]
 #[primary_key(uuid)]
-
 pub struct User {
     pub uuid: String,
     pub created_at: NaiveDateTime,
@@ -88,7 +89,6 @@ impl User {
 
 use crate::db::schema::users;
 use crate::db::DbConn;
-use diesel::prelude::*;
 
 /// Database Methods
 
@@ -122,5 +122,19 @@ impl User {
 
     pub fn delete(self, conn: &DbConn) -> Result<(), String> {
         Err("EE".to_string())
+    }
+
+    pub fn find_by_email(email: &str, conn: &DbConn) -> Result<User, String> {
+        let email_lowercase = email.to_lowercase();
+        use crate::db::schema::users::dsl::*;
+
+        let usr = match users.filter(username.eq(email_lowercase)).first::<User>(&** conn){
+            Ok(user) => Ok(user),
+            Err(_) => {
+                return Err(String::from("User does not exist"));
+            }
+        };
+
+        return usr;
     }
 }
