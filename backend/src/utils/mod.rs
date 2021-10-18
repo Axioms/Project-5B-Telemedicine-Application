@@ -1,6 +1,9 @@
+pub mod auth;
 pub mod crypto;
-pub mod settings;
 pub mod error;
+pub mod files;
+pub mod settings;
+
 use uuid;
 
 use std::sync::{Arc, Mutex};

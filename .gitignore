@@ -2,6 +2,12 @@
 
 .vscode
 
+### GENERATED FILES ###
+
+*.rsa
+*.pem
+settings.json
+
 ### NODE ###
 
 # Logs

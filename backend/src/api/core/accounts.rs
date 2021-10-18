@@ -5,6 +5,8 @@ use crate::{
     db::{models::*, DbConn},
     api::EmptyResult,
     api::StringResult,
+    api::JsonResult,
+    utils
 };
 
 pub fn routes() -> Vec<rocket::Route> {
@@ -51,8 +53,11 @@ fn register(data: Json<RegisterData>, conn: DbConn) -> EmptyResult {
     user.save(&conn)
 }
 
+struct login_result {
+    token: String
+}
 #[post("/accounts/login", data = "<data>")]
-fn login(data: Json<LoginData>, conn: DbConn) -> StringResult {
+fn login(data: Json<LoginData>, conn: DbConn) ->  JsonResult {
     let email = data.Email.to_lowercase();
 
     let usr = User::find_by_email(&email, &conn).unwrap();
@@ -60,9 +65,11 @@ fn login(data: Json<LoginData>, conn: DbConn) -> StringResult {
     let validated = usr.validate_password(&data.PasswordHash);
 
     if validated {
-        return Ok(String::from("User varified"));
+        let jwt_claims = utils::auth::generate_login_claims(usr);
+        let token = utils::auth::encode_jwt(&jwt_claims);
+        return Ok(Json(json!({"token": token})));
     }
     else {
-        return Ok(String::from("unvarified user"));
+        return Ok(Json(json!({"token": "No"})));
     }
 }
