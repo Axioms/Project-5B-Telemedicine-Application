@@ -1,7 +1,7 @@
 <template>
   <div class="requestAppointments">
     <v-card elevation="0" class="mx-auto mt-5" max-width="60%">
-        <h1 class="text-center mt-4">Sceduling Appointment</h1>
+        <h1 class="text-center mt-4">Scheduling Appointment</h1>
         <p class="text-center mt-4">Select a day to view available times.</p>
 
             <v-calendar color="accent"></v-calendar>
