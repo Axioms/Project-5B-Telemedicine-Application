@@ -11,15 +11,19 @@
                 <v-card-text>
                     <v-text-field
                             ref="firstname"
-                            v-model="firstname"
+                            v-model="this.$store.state.profileFirstName"
                             :rules="[() => !!firstname || 'This field is required']"
                             label="First Name"
                             required
                             outlined
+                            value="Hello"
+
+
                     ></v-text-field>
+
                     <v-text-field
                             ref="lastname"
-                            v-model="lastname"
+                            v-model="this.$store.state.profileLastName"
                             :rules="[() => !!lastname || 'This field is required']"
                             label="Last Name"
                             outlined
@@ -28,7 +32,7 @@
                     <v-text-field
                             ref="email"
                             label="Email"
-                            v-model="email"
+                            v-model="this.$store.state.profileEmail"
                             :rules="[() => !!email || 'This field is required']"
                             outlined
                             required
