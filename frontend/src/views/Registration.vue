@@ -49,7 +49,7 @@ export default class Registration extends Vue {
     else
     {
       const firebaseAuth = await firebase.auth();
-      const createUser = await firebaseAuth.createUserWithEmailAndPassword(this.email, this.password)
+      const createUser: any = await firebaseAuth.createUserWithEmailAndPassword(this.email, this.password)
     .catch((error) => {
       this.error = true;
       this.errorMsg = error.message;
