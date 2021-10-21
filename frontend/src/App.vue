@@ -52,6 +52,13 @@
             <v-list-item-title>Request an appointment</v-list-item-title>
           </v-list-item>
 
+          <v-list-item v-if="isPatient" to="/myAppointments">
+            <v-list-item-icon>
+              <v-icon>mdi-calendar</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>My appointments</v-list-item-title>
+          </v-list-item>
+
           <v-list-item v-if="isPatient" to="/patientReports">
             <v-list-item-icon>
               <!-- icon here -->
