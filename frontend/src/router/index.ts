@@ -18,7 +18,6 @@ import PatientReports from "../views/patient-pages/Reports.vue";
 import Resources from "../views/patient-pages/Resources.vue";
 import ScheduleAppointment from "../views/provider-pages/ScheduleAppointments.vue";
 import ProviderCalendar from "../views/provider-pages/Calendar.vue";
-import ProviderReports from "../views/provider-pages/Reports.vue";
 import ScheduleCall from "../views/provider-pages/ScheduleCall.vue";
 import PatientChat from "../views/provider-pages/PatientChat.vue";
 import Education from "../views/provider-pages/Education.vue";
@@ -90,11 +89,6 @@ const routes: Array<RouteConfig> = [
     path: "/providerCalendar",
     name: "Provider Calendar",
     component: ProviderCalendar
-  },
-  {
-    path: "/providerReports",
-    name: "Provider Reports",
-    component: ProviderReports
   },
   {
     path: "/scheduleCall",
