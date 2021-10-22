@@ -118,13 +118,6 @@
             <v-list-item-title>Schedule appointment</v-list-item-title>
           </v-list-item>
 
-          <v-list-item v-if="isProvider" to="/providerReports">
-            <v-list-item-icon>
-              <v-icon>mdi-file</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>View reports</v-list-item-title>
-          </v-list-item>
-
           <v-list-item v-if="isProvider" to="/providerCalendar">
             <v-list-item-icon>
               <v-icon>mdi-calendar</v-icon>
