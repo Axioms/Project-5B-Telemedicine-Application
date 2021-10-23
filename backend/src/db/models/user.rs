@@ -120,7 +120,7 @@ impl User {
             }
     }
 
-    pub fn delete(self, conn: &DbConn) -> Result<(), String> {
+    pub fn delete(self, _conn: &DbConn) -> Result<(), String> {
         Err("EE".to_string())
     }
 

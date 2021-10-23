@@ -21,11 +21,6 @@ use rocket::State;
 use std::sync::{Arc, Mutex};
 use std::thread;
 
-#[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
-}
-
 fn init_settings(settings: utils::SettingsMutex) {
     thread::spawn(move || {
         utils::settings::detect_change(settings);
@@ -49,7 +44,7 @@ fn check_rsa_keys() -> Result<(), ()> {
             Err(e) => panic!("Error creating RSA keys: {}", e),
         };
 
-        utils::files::write_file(&priv_path, &priv_key);
+        utils::files::write_file(&priv_path, &priv_key).unwrap();
     }
 
     if !utils::files::file_exists(&pub_path) {
@@ -78,13 +73,14 @@ fn check_rsa_keys() -> Result<(), ()> {
 
 fn main() {
     //rocket::build().mount("/", routes![index])
-    check_rsa_keys();
+    check_rsa_keys().unwrap();
     let settings = Arc::new(Mutex::new(utils::settings::SettingsWrapper::defualt()));
     init_settings(settings.clone());
 
-    rocket::ignite().mount("/", routes![index])
+    rocket::ignite()
         .manage(db::init_pool())
         .mount(&["", "/api"].concat(), api::core_routes())
+        .mount(&["", "/"].concat(), api::web_routes())
         .manage(settings)
         .launch();
 }

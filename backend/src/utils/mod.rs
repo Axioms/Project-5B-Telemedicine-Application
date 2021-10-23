@@ -3,6 +3,9 @@ pub mod crypto;
 pub mod error;
 pub mod files;
 pub mod settings;
+pub mod cache;
+pub mod headers;
+pub mod cors;
 
 use uuid;
 
