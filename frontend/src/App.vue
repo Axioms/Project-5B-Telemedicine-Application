@@ -4,7 +4,7 @@
       <v-app-bar-nav-icon v-if="userIsLoggedIn" @click="drawer = true"></v-app-bar-nav-icon>
       <v-toolbar-title>{{ currentRouteName }}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <div class = "profile" ref ="profile">
+      <div v-if="userIsLoggedIn" class = "profile" ref ="profile">
         <span class="mr-5">
           Logged in as: {{this.$store.state.profileFirstName+" "+this.$store.state.profileLastName}}
         </span>
