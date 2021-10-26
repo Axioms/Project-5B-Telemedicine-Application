@@ -75,7 +75,7 @@
             <v-list-item-title>Doctor Chat</v-list-item-title>
           </v-list-item>
 
-          <v-list-item v-if="isPatient" to="/resources">
+          <v-list-item v-if="isPatient" to="/patientResources">
             <v-list-item-icon>
               <!-- icon here -->
               <v-icon>mdi-file-word-outline</v-icon>
@@ -138,11 +138,11 @@
             <v-list-item-title>Patient Chat</v-list-item-title>
           </v-list-item>
 
-          <v-list-item v-if="isProvider" to="/education">
+          <v-list-item v-if="isProvider" to="/providerResources">
             <v-list-item-icon>
-              <v-icon>mdi-book</v-icon>
+              <v-icon>mdi-file-word-outline</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Education</v-list-item-title>
+            <v-list-item-title>Resources</v-list-item-title>
           </v-list-item>
 
 
