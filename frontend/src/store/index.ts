@@ -1,9 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import createPersistedState from "vuex-persistedstate";
 import "firebase/compat/firestore";
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 import db from "@/main.ts"
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -70,4 +72,5 @@ export default new Vuex.Store({
     },
   },
   modules: {},
+  plugins: [createPersistedState()]
 });
