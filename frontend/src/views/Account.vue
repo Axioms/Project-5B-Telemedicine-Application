@@ -25,10 +25,6 @@ export default class Account extends Vue
   email = this.$store.state.profileEmail;
   lastname = this.$store.state.profileLastName;
 
-  // auth = getAuth();
-  // user = this.auth.currentUser;
-  // profile = db.collection('profiles').doc(this.user.uid);
-
   mounted() {
     this.newFirstName = this.firstname;
     this.newLastName = this.lastname;
