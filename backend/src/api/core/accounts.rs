@@ -22,7 +22,7 @@ struct RegisterData {
     Email: String,
     Kdf: Option<i32>,
     KdfIterations: Option<i32>,
-    Key: String,
+    Key: Option<String>,
     Keys: Option<KeysData>,
     PasswordHash: String,
     MasterPasswordHint: Option<String>,

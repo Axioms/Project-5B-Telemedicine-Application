@@ -1,7 +1,8 @@
 table! {
     reports (uuid) {
         uuid -> Text,
-        user_uuid -> Text,
+        patient_uuid -> Text,
+        provider_uuid -> Text,
         created_at -> Timestamp,
         report -> Text,
     }
@@ -18,7 +19,7 @@ table! {
         password_hash -> Binary,
         salt -> Binary,
         password_hint -> Nullable<Text>,
-
+        
         akey -> Text,
         private_key -> Text,
         public_key -> Text,
