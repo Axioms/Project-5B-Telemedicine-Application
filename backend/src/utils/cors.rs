@@ -22,8 +22,7 @@ impl Cors {
     fn get_allowed_origin(headers: &HeaderMap) -> Option<String> {
         let origin = Cors::get_header(headers, "Origin");
         let domain_origin = env::var("DOMAIN_ORIGIN").expect("DOMAIN_ORIGIN must be set");
-        let safari_extension_origin = "file://";
-        if origin == domain_origin || origin == safari_extension_origin {
+        if origin == domain_origin {
             Some(origin)
         } else {
             None

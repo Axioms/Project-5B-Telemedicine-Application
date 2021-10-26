@@ -137,4 +137,17 @@ impl User {
 
         return usr;
     }
+
+    pub fn find_by_uuid(uuid: &str, conn: &DbConn) -> Result<User, String> {
+        use crate::db::schema::users::dsl::*;
+
+        let usr = match users.filter(uuid.eq(uuid)).first::<User>(&** conn){
+            Ok(user) => Ok(user),
+            Err(_) => {
+                return Err(String::from("User does not exist"));
+            }
+        };
+
+        return usr;
+    }
 }

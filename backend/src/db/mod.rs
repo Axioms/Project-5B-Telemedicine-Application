@@ -1,7 +1,8 @@
 pub mod models;
-#[path = "schemas/sqlite/schema.rs"]
+#[path = "schema/sqlite/schema.rs"]
 pub mod schema;
 pub struct Users;
+pub struct Reports;
 
 use dotenv::dotenv;
 use std::env;

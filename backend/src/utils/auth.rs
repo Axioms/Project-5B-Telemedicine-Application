@@ -136,3 +136,110 @@ pub fn generate_delete_claims(uuid: String) -> BasicJwtClaims {
 // Bearer token authentication
 //
 use rocket::request::{FromRequest, Outcome, Request};
+
+use crate::db::{
+    DbConn,
+};
+
+pub struct Host {
+    pub host: String,
+}
+
+impl<'a, 'r> FromRequest<'a, 'r> for Host {
+    type Error = &'static str;
+
+    fn from_request(request: &'a Request<'r>) -> Outcome<Self, Self::Error> {
+        let headers = request.headers();
+        let domain = env::var("DOMAIN_ORIGIN").expect("DOMAIN_ORIGIN must be set");
+
+        // Get host
+        let host = domain;
+        let protocol = "http";
+
+        format!("{}://{}", protocol, host);
+
+        Outcome::Success(Host {
+            host,
+        })
+    }
+}
+
+pub struct Headers {
+    pub user: User,
+}
+
+impl<'a, 'r> FromRequest<'a, 'r> for Headers {
+    type Error = &'static str;
+
+    fn from_request(request: &'a Request<'r>) -> Outcome<Self, Self::Error> {
+        let headers = request.headers();
+
+        let host = match Host::from_request(request) {
+            Outcome::Forward(_) => return Outcome::Forward(()),
+            Outcome::Failure(f) => return Outcome::Failure(f),
+            Outcome::Success(host) => host.host,
+        };
+
+        // Get access_token
+        let access_token: &str = match headers.get_one("Authorization") {
+            Some(a) => match a.rsplit("Bearer ").next() {
+                Some(split) => split,
+                None => "No access token provided",
+            },
+            None => "No access token provided",
+        };
+
+        // Check JWT token is valid and get device and user from it
+        let claims = match decode_login(access_token) {
+            Ok(claims) => claims,
+            Err(_) => panic!("Invalid claim"),
+        };
+
+
+        let user_uuid = claims.sub;
+
+        let conn = match request.guard::<DbConn>() {
+            Outcome::Success(conn) => conn,
+            _ => panic!("Error getting DB"),
+        };
+
+        let user = match User::find_by_uuid(&user_uuid, &conn) {
+            user => user.unwrap(),
+        };
+/*
+        if user.security_stamp != claims.sstamp {
+            if let Some(stamp_exception) =
+                user.stamp_exception.as_deref().and_then(|s| serde_json::from_str::<UserStampException>(s).ok())
+            {
+                let current_route = match request.route().and_then(|r| r.name) {
+                    Some(name) => name,
+                    _ => err_handler!("Error getting current route for stamp exception"),
+                };
+
+                // Check if the stamp exception has expired first.
+                // Then, check if the current route matches any of the allowed routes.
+                // After that check the stamp in exception matches the one in the claims.
+                if Utc::now().naive_utc().timestamp() > stamp_exception.expire {
+                    // If the stamp exception has been expired remove it from the database.
+                    // This prevents checking this stamp exception for new requests.
+                    let mut user = user;
+                    user.reset_stamp_exception();
+                    if let Err(e) = user.save(&conn) {
+                        error!("Error updating user: {:#?}", e);
+                    }
+                    err_handler!("Stamp exception is expired")
+                } else if !stamp_exception.routes.contains(&current_route.to_string()) {
+                    err_handler!("Invalid security stamp: Current route and exception route do not match")
+                } else if stamp_exception.security_stamp != claims.sstamp {
+                    err_handler!("Invalid security stamp for matched stamp exception")
+                }
+            } else {
+                err_handler!("Invalid security stamp")
+            }
+        }
+*/
+        Outcome::Success(Headers {
+            user,
+        })
+    }
+}

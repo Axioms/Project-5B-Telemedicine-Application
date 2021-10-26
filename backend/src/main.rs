@@ -82,5 +82,7 @@ fn main() {
         .mount(&["", "/api"].concat(), api::core_routes())
         .mount(&["", "/"].concat(), api::web_routes())
         .manage(settings)
+        .attach(utils::headers::AppHeaders())
+        .attach(utils::cors::Cors())
         .launch();
 }

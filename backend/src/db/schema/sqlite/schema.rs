@@ -1,14 +1,22 @@
+table! {
+    reports (uuid) {
+        uuid -> Text,
+        user_uuid -> Text,
+        created_at -> Timestamp,
+        report -> Text,
+    }
+}
 
 table! {
     users (uuid) {
-        uuid -> Char,
+        uuid -> Text,
         created_at -> Timestamp,
         updated_at -> Timestamp,
 
-        username -> Varchar,
-
-        password_hash -> Blob,
-        salt -> Blob,
+        username -> Text,
+        
+        password_hash -> Binary,
+        salt -> Binary,
         password_hint -> Nullable<Text>,
 
         akey -> Text,
@@ -26,5 +34,6 @@ table! {
 }
 
 allow_tables_to_appear_in_same_query!(
+    reports,
     users,
 );
