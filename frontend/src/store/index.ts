@@ -4,6 +4,7 @@ import createPersistedState from "vuex-persistedstate";
 import "firebase/compat/firestore";
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
+import { getAuth, updateEmail } from "firebase/auth";
 import db from "@/main.ts"
 
 Vue.use(Vuex);
@@ -50,7 +51,22 @@ export default new Vuex.Store({
       state.profileInitials = state.profileFirstName.match(/(\b\S)?/g).join("")+
           state.profileLastName.match(/(\b\S)?/g).join("");
     },
-   
+    // method for changing account info on "Account" page
+    changeAccountInfo(state, { firstName, lastName, email } ){
+      state.profileFirstName = firstName;
+      state.profileLastName = lastName;
+      state.profileEmail = email;
+      
+      const currentUser = firebase.auth().currentUser;
+      currentUser?.updateEmail(email);
+
+      const dataBase = db.collection("users").doc(currentUser?.uid);
+      dataBase.set({
+        firstname: firstName,
+        lastname: lastName,
+        email: email,
+      })
+    }
   },
   actions: {
     setIsLoggedIn(context, status){
@@ -66,7 +82,7 @@ export default new Vuex.Store({
     {
       const database = await db.collection('users').doc(firebase?.auth()?.currentUser?.uid);
       const dbResults = await database.get();
-      commit("setProfileInfo",dbResults);
+      commit("setProfileInfo", dbResults);
       commit("setProfileInitials");
       console.log(dbResults);
     },
