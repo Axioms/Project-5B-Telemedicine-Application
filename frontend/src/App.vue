@@ -4,16 +4,15 @@
       <v-app-bar-nav-icon v-if="userIsLoggedIn" @click="drawer = true"></v-app-bar-nav-icon>
       <v-toolbar-title>{{ currentRouteName }}</v-toolbar-title>
       <v-spacer></v-spacer>
+      <div class = "profile" ref ="profile">
+        <span class="mr-5">
+          Logged in as: {{this.$store.state.profileFirstName+" "+this.$store.state.profileLastName}}
+        </span>
+      </div>
       About
       <v-btn class="mr-2" to="/about" icon>
         <v-icon >mdi-information-outline</v-icon>
       </v-btn>
-      <div class = "profile" ref ="profile">
-        <span>
-          {{this.$store.state.profileFirstName+" "+this.$store.state.profileLastName}}
-        </span>
-      </div>
-
     </v-app-bar>
 
     <v-navigation-drawer
