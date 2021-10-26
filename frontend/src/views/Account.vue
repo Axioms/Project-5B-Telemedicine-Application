@@ -35,6 +35,10 @@ export default class Account extends Vue
     this.newEmail = this.email;
   }
 
+  isDisabled() {
+    return !((this.newFirstName !== this.firstname) || (this.newLastName !== this.lastname) || (this.newEmail !== this.email));
+  }
+
   submitAccountChanges(){
     this.$store.commit('changeAccountInfo', {firstName: this.newFirstName, lastName: this.newLastName, email: this.newEmail});
     this.snackbar = true;
