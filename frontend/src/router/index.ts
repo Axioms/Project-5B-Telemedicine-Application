@@ -15,12 +15,12 @@ import firebase from "firebase/compat";
 import PatientCalendar from "../views/patient-pages/Calendar.vue";
 import DocChat from "../views/patient-pages/DocChat.vue";
 import PatientReports from "../views/patient-pages/Reports.vue";
-import Resources from "../views/patient-pages/Resources.vue";
+import PatientResources from "../views/patient-pages/Resources.vue";
 import ScheduleAppointment from "../views/provider-pages/ScheduleAppointments.vue";
 import ProviderCalendar from "../views/provider-pages/Calendar.vue";
 import ScheduleCall from "../views/provider-pages/ScheduleCall.vue";
 import PatientChat from "../views/provider-pages/PatientChat.vue";
-import Education from "../views/provider-pages/Education.vue";
+import ProviderResources from "../views/provider-pages/Resources.vue";
 
 Vue.use(VueRouter);
 
@@ -69,9 +69,9 @@ const routes: Array<RouteConfig> = [
     component: PatientReports
   },
   {
-    path: "/resources",
+    path: "/patientResources",
     name: "Patient Resources",
-    component: Resources
+    component: PatientResources
   },
 
   // Provider pages
@@ -101,9 +101,9 @@ const routes: Array<RouteConfig> = [
     component: PatientChat
   },
   {
-    path: "/education",
-    name: "Education",
-    component: Education
+    path: "/providerResources",
+    name: "Resources",
+    component: ProviderResources
   },
 
   // Login/registration
