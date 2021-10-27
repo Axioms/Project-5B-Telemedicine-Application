@@ -4,13 +4,15 @@
         <h1 class="text-center" v-if='loaded'>
 
           {{ $refs.calendar.title }}
-        </h1>
-        <v-sheet height="600">
-          <v-calendar
-            ref="calendar"
-            :events="events">
-          </v-calendar>
-        </v-sheet>
+        </h1>    
+          <v-sheet height="600">
+            <v-calendar
+              ref="calendar"
+              :events="events"
+              color="accent"
+              v-model="selectedDay">
+            </v-calendar>
+          </v-sheet>
    </v-card><v-divider class="mt-5 pa-4"></v-divider>
    <v-card elevation="0" class="mt-5">
      <h2 class="text-center">My Upcoming Appointments</h2>

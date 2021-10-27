@@ -1,9 +1,8 @@
 <template>
   <div class="resources">
     <v-card elevation="0" class="mx-auto mt-5" max-width="60%">
-        <h1 class="mt-4">Frequently Asked Questions</h1>
-
         <v-row justify="center" class="mt-5">
+        <h1 class="mt-4">Frequently Asked Questions</h1>
           <v-expansion-panels accordion>
             <v-expansion-panel>
               <v-expansion-panel-header>
@@ -15,6 +14,17 @@
 
                 <p><b class="mb-4">How do I cancel an appointment?</b><br />
                 To cancel an appointment, go to the navigation bar and click on the "My appointments" tab. From there, you can see all of your currently scheduled appointments, and you can choose to cancel.</p>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+
+            <v-expansion-panel>
+              <v-expansion-panel-header>
+                Scheduling a call
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <p><b class="mb-4">How do I schedule a patient call?</b><br />
+                To schedule a call, go to the navigation bar and click on the "Schedule a Call" tab. From there, you can select your desired day, time and patient for the call.</p>
+
               </v-expansion-panel-content>
             </v-expansion-panel>
 

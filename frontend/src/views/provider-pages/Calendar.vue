@@ -1,14 +1,18 @@
 <template>
   <div class="calendar">
     <v-card elevation="0" class="mx-auto mt-5" max-width="60%">
-        <h2 class="text-center" v-if='loaded'>
+        <h1 class="text-center" v-if='loaded'>
 
           {{ $refs.calendar.title }}
-        </h2>
-        <v-calendar
-          ref="calendar"
-          :events="events">
-        </v-calendar>
+        </h1>
+        <v-sheet height="600">
+          <v-calendar
+            ref="calendar"
+            :events="events"
+            color="accent"
+            v-model="selectedDay">
+          </v-calendar>
+        </v-sheet>
    </v-card><v-divider class="mt-5 pa-4"></v-divider>
    <v-card elevation="0" class="mt-5">
      <h2 class="text-center">My Upcoming Appointments</h2>
@@ -31,7 +35,10 @@ import "firebase/compat/auth"
 export default class Calendar extends Vue
 {
   loaded = false;
-  events = [{name: "Appointment #1", start: "2021-10-26", end: "2021-10-26", timed: 1}]
+  events = [{name: "Appt. 9AM", start: "2021-10-26", end: "2021-10-26", timed: 1}
+            ,{name: "Broken Arm 9AM", start: "2021-10-28", end: "2021-10-28", timed: 1}
+            ,{name: "Accute Pain 10AM", start: "2021-10-29", end: "2021-10-29", timed: 1}
+            ,{name: "Appt. 12PM", start: "2021-10-29", end: "2021-10-29", timed: 1}]
 
   mounted () {
     this.loaded = true;
