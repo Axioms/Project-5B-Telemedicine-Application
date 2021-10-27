@@ -20,6 +20,7 @@
                     <v-text-field
                             ref="messageBox"
                             v-model="messageBox"
+                            v-on:keyup.enter="sendMessage"
                             outlined
                             clearable
                             label="Message"
