@@ -40,8 +40,8 @@ impl Reports {
     pub fn to_json(&self) -> serde_json::Value {
         json!({
             "uuid": self.uuid,
-            "provider_uuid": self.provider_uuid,
             "patient_uuid": self.patient_uuid,
+            "provider_uuid": self.provider_uuid,
             "created_at": self.created_at,
             "report": self.report,
         })

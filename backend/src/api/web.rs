@@ -11,7 +11,7 @@ use crate::{
 
 pub fn routes() -> Vec<Route> {
 
-routes![web_index, javascript, css, fonts, favicon]
+routes![web_index, javascript, css, fonts, images, favicon]
 }
 
 #[get("/")]
@@ -42,6 +42,12 @@ fn css(filename: String) -> Option<NamedFile> {
 fn fonts(filename: String) -> Option<NamedFile> {
     let web_root = env::var("WEB_ROOT").expect("WEB_ROOT must be set");
     NamedFile::open(Path::new(&web_root).join("fonts").join(filename)).ok()
+}
+
+#[get("/img/<filename>")]
+fn images(filename: String) -> Option<NamedFile> {
+    let web_root = env::var("WEB_ROOT").expect("WEB_ROOT must be set");
+    NamedFile::open(Path::new(&web_root).join("img").join(filename)).ok()
 }
 
 #[get("/favicon.ico")]
