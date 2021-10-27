@@ -1,14 +1,16 @@
 <template>
   <div class="calendar">
     <v-card elevation="0" class="mx-auto mt-5" max-width="60%">
-        <h2 class="text-center" v-if='loaded'>
+        <h1 class="text-center" v-if='loaded'>
 
           {{ $refs.calendar.title }}
-        </h2>
-        <v-calendar
-          ref="calendar"
-          :events="events">
-        </v-calendar>
+        </h1>
+        <v-sheet height="600">
+          <v-calendar
+            ref="calendar"
+            :events="events">
+          </v-calendar>
+        </v-sheet>
    </v-card><v-divider class="mt-5 pa-4"></v-divider>
    <v-card elevation="0" class="mt-5">
      <h2 class="text-center">My Upcoming Appointments</h2>
@@ -23,8 +25,8 @@
         :key="appointment.id"
       >
       {{ appointment.id }} 
-          <span class="ml-6" style="color: red;" v-if="!appointment.status"><br/>Appointment has not been confirmed</span>
-          <span class="ml-6" style="color: green;" v-if="appointment.status"><br />Appointment confirmed</span>
+          <span class="ml-6" style="color: red; font-size: smaller;" v-if="!appointment.status"><br/>Appointment has not been confirmed</span>
+          <span class="ml-6" style="color: green; font-size: smaller;" v-if="appointment.status"><br />Appointment confirmed</span>
       <br/>
       Comments: {{appointment.comments}}
       </p>
@@ -53,7 +55,7 @@ export default class Calendar extends Vue
 
   mounted () {
     this.loaded = true;
-    this.loadAppointments()
+    this.loadAppointments();
   }
 
   async loadAppointments () {
@@ -61,19 +63,35 @@ export default class Calendar extends Vue
     const ref = db.collection('appointments');
     const snapshot = await ref.where('patient', '==', currentUser.uid).get();
     snapshot.forEach(doc => {
-      this.myAppointments.push({
-        id: doc.data().startTime,
-        status: doc.data().approvedStatus,
-        comments: doc.data().comments
+      
+      let date = doc.data().startTime;
+      this.events.push({
+        name: "Appointment",
+        start: date,
+        end: date,
+        color: "blue"
       })
+
+      // Populate upcoming appointments
+      // // Only add dates that are after the current date.
+      if(this.isDateAfterToday(date)){
+        this.myAppointments.push({
+          id: new Date(date).toString(),
+          status: doc.data().approvedStatus,
+          comments: doc.data().comments
+        })
+      }
     });
-    console.log(this.myAppointments)
   }
 
   populateCalendarEvents() {
     this.myAppointments.forEach(element => {
       this.events.push({start: element.id})
     })
+  }
+
+  isDateAfterToday(date) {
+    return new Date(date) > new Date(new Date().toDateString());
   }
 }
 
