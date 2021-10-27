@@ -62,19 +62,19 @@ import Options from "vue-class-component";
 })
 export default class scheduleCall extends Vue {
   times = ["9:00", "10:00", "11:00", "12:00", "1:00", "2:00", "3:00", "4:00", "5:00"];
-  selectedTime = null;
+  selectedTime = "";
   selectedDay = null;
   apptComments = null;
   snackbar = false;
 
   validApptRequest () {
-    return !((this.selectedTime !== null) && (this.selectedDay !== null));
+    return !((this.selectedTime !== "") && (this.selectedDay !== null));
   }
 
   // This is really, really, really messy
   submitAppointmentRequest() {
     let dateStr = null;
-    if(this.selectedTime.length < 5){
+    if(this.selectedTime?.length < 5){
       dateStr = (this.selectedDay+"T0"+this.selectedTime);
     }
     else{
@@ -87,7 +87,7 @@ export default class scheduleCall extends Vue {
     }
     this.$store.dispatch('createAppointmentRequest', request);
     this.selectedDay = null;
-    this.selectedTime = null;
+    this.selectedTime = "";
     this.apptComments = null;
     this.snackbar = true;
   }
