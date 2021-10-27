@@ -51,20 +51,20 @@
             <v-list-item-title>Request an appointment</v-list-item-title>
           </v-list-item>
 
-          <v-list-item v-if="isPatient" to="/patientReports">
-            <v-list-item-icon>
-              <!-- icon here -->
-              <v-icon>mdi-content-save</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>View reports</v-list-item-title>
-          </v-list-item>
-
           <v-list-item v-if="isPatient" to="/patientCalendar">
             <v-list-item-icon>
               <!-- icon here -->
               <v-icon>mdi-calendar</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Calendar</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item v-if="isPatient" to="/patientReports">
+            <v-list-item-icon>
+              <!-- icon here -->
+              <v-icon>mdi-content-save</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>View reports</v-list-item-title>
           </v-list-item>
 
           <v-list-item v-if="isPatient" to="/docChat">
