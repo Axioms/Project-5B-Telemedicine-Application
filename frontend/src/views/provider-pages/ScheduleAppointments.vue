@@ -12,112 +12,108 @@
                 :search="search"
 
             >
-
               <template v-slot:top>
-
                 <v-text-field
                     v-model="search"
                     label="Search"
                     class="mx-4"
-
                 ></v-text-field>
-
               </template>
-
               <template v-slot:body.append>
-
                 <tr>
-
-
                   <td></td>
-
                   <td colspan="4"></td>
-
-
                 </tr>
-
               </template>
-
+              <template v-slot:item.actions="{ item }" >
+                <v-icon
+                    large
+                    class="mr-2"
+                    style="color: green;"
+                    @click="confirmAppointment(item, true)"
+                    v-if="!item.apptConfirmed"
+                  >
+                    mdi-check
+                  </v-icon>
+                  <v-icon
+                    large
+                    @click="confirmAppointment(item, false)"
+                    style="color: red;"
+                    v-if="!item.apptConfirmed"
+                  >
+                    mdi-close-octagon-outline
+                </v-icon>
+              </template>
             </v-data-table>
-
           </div>
         </div>
    </v-card>
   </div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      search: '',
-      patientID: '',
-      patients: [
-        {
-          name: 'Braxton Meyer',
-          patientID: 159,
-          date: "10/30/2021",
-          time: "8:00 AM",
+<script lang="ts">
+import Options from "vue-class-component";
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import "firebase/compat/firestore";
+import firebase from "firebase/compat/app"
+import "firebase/compat/auth"
+import db from "@/main.ts"
 
-        },
+@Options({
+  components: {
+    
+  },
+})
+export default class ScheduleAppointments extends Vue {
+  headers = [ {
+      text: 'Patient',
+      align: 'start',
+      sortable: false,
+      value: 'name',
+    },
+    { text: 'Comments', value: 'comments'},
+    { text: 'Date', value: 'date' },
+    { text: 'Confirmed', value: 'apptConfirmed'},
+    { text: 'Actions', value: 'actions', sortable: false}
+    ]
+  patients: any = [];
+  search = "";
 
-        {
-          name: 'Kieran Clark',
-          patientID: 237,
-          date: "10/30/2021",
-          time: "8:30 AM",
 
-        },
-        {
-          name: 'Alex Curran',
-          patientID: 262,
-          date: "10/30/2021",
-          time: "9:00 AM",
+  created () {
+    this.populateAppointments();
+  }
 
-        },
-        {
-          name: 'Dillon Kaim',
-          patientID: 305,
-          date: "10/30/2021",
-          time: "9:30 AM",
+  async populateAppointments() {
+    
+    const ref = db.collection('appointments');
+    const snapshot = await ref.get();
+    snapshot.forEach(doc => {
 
-        },
+      this.patients.push({
+        name: doc.data().patientName,
+        date: (new Date(doc.data().startTime).toString()),
+        comments: doc.data().comments,
+        apptConfirmed: doc.data().approvedStatus,
+        apptID: doc.id
+      })
+    })
+  }
 
-      ],
+  async confirmAppointment(appointment: any, status: boolean){
+    if(!status){
+      const res = await db.collection('appointments').doc(appointment.apptID).delete();
     }
-  },
-  computed: {
-    headers () {
-      return [
-        {
-          text: 'Patient',
-          align: 'start',
-          sortable: false,
-          value: 'name',
-        },
-        {
-          text: 'PatientID',
-          value: 'patientID',
-          filter: value => {
-            if (!this.patientID) return true
+    else if (status){
+      const ref = db.collection('appointments').doc(appointment.apptID);
 
-            return value < parseInt(this.patientID)
-          },
-        },
-        { text: 'Date', value: 'date' },
-        { text: 'Time', value: 'time' },
+      // Set the 'capital' field of the city
+      const res = await ref.update({approvedStatus: true});
+    }
+    this.patients = [];
+    this.populateAppointments();
+  }
 
-
-      ]
-    },
-  },
-  methods: {
-    filterOnlyCapsText (value, search, item) {
-      return value != null &&
-          search != null &&
-          typeof value === 'string' &&
-          value.toString().toLocaleUpperCase().indexOf(search) !== -1
-    },
-  },
 }
 </script>
