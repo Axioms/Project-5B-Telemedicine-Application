@@ -18,7 +18,6 @@ export default new Vuex.Store({
     profileFirstName: "",
     profileLastName: "",
     profileID: null,
-    profileInitials: "",
     userType: null,
     user: null,
   },
@@ -45,11 +44,6 @@ export default new Vuex.Store({
       state.profileFirstName = doc.data().firstname;
       state.profileLastName = doc.data().lastname;
       state.userType = doc.data().usertype;
-    },
-    setProfileInitials(context, state)
-    {
-      state.profileInitials = state.profileFirstName.match(/(\b\S)?/g).join("")+
-          state.profileLastName.match(/(\b\S)?/g).join("");
     },
     // method for changing account info on "Account" page
     changeAccountInfo(state, { firstName, lastName, email } ){
@@ -83,7 +77,6 @@ export default new Vuex.Store({
       const database = await db.collection('users').doc(firebase?.auth()?.currentUser?.uid);
       const dbResults = await database.get();
       commit("setProfileInfo", dbResults);
-      commit("setProfileInitials");
       console.log(dbResults);
     },
     createAppointmentRequest(context, request){
@@ -91,7 +84,8 @@ export default new Vuex.Store({
         patient: firebase.auth().currentUser?.uid,
         startTime: request.startTime,
         comments: request.comments,
-        approvedStatus: false
+        approvedStatus: false,
+        patientName: (context.state.profileFirstName + " " + context.state.profileLastName)
       }
       
       const res = db.collection('appointments').add(appointmentRequest);
