@@ -26,7 +26,7 @@
               color="success"
               @click="submitAppointmentRequest()"
               large
-        >Schedule</v-btn> {{ selectedDay }}T{{ selectedTime }}Z
+        >Schedule</v-btn>
 
    </v-card>
 
