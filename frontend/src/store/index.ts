@@ -86,6 +86,16 @@ export default new Vuex.Store({
       commit("setProfileInitials");
       console.log(dbResults);
     },
+    createAppointmentRequest(context, request){
+      const appointmentRequest = {
+        patient: request.patientID,
+        startTime: request.startTime,
+        comments: request.comments,
+        approvedStatus: false
+      }
+
+      firebase.database().ref('appointments').push(appointmentRequest); //add try catch
+    }
   },
   modules: {},
   plugins: [createPersistedState()]
