@@ -70,9 +70,19 @@ export default class scheduleCall extends Vue {
   validApptRequest () {
     return !((this.selectedTime !== null) && (this.selectedDay !== null));
   }
+
+  // This is really, really, really messy
   submitAppointmentRequest() {
+    let dateStr = null;
+    if(this.selectedTime.length < 5){
+      dateStr = (this.selectedDay+"T0"+this.selectedTime);
+    }
+    else{
+      dateStr = (this.selectedDay+"T"+this.selectedTime);
+    }
+
     const request = {
-      startTime: this.selectedDay+"T"+this.selectedTime+"Z",
+      startTime: dateStr,
       comments: this.apptComments
     }
     this.$store.dispatch('createAppointmentRequest', request);
