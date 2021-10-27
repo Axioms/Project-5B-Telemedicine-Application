@@ -50,8 +50,8 @@ import db from "@/main.ts"
 export default class Calendar extends Vue
 {
   loaded = false;
-  myAppointments = [];
-  events = []
+  myAppointments: any = [];
+  events: any = []
 
   mounted () {
     this.loaded = true;
@@ -61,12 +61,12 @@ export default class Calendar extends Vue
   async loadAppointments () {
     const currentUser = firebase.auth().currentUser;
     const ref = db.collection('appointments');
-    const snapshot = await ref.where('patient', '==', currentUser.uid).get();
+    const snapshot = await ref.where('patient', '==', currentUser?.uid).get();
     snapshot.forEach(doc => {
       
       let date = doc.data().startTime;
       this.events.push({
-        name: "Appointment",
+        name: 'Appointment',
         start: date,
         end: date,
         color: "blue"
@@ -85,12 +85,12 @@ export default class Calendar extends Vue
   }
 
   populateCalendarEvents() {
-    this.myAppointments.forEach(element => {
+    this.myAppointments.forEach((element: any) => {
       this.events.push({start: element.id})
     })
   }
 
-  isDateAfterToday(date) {
+  isDateAfterToday(date: string) {
     return new Date(date) > new Date(new Date().toDateString());
   }
 }
