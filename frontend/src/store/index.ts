@@ -88,13 +88,13 @@ export default new Vuex.Store({
     },
     createAppointmentRequest(context, request){
       const appointmentRequest = {
-        patient: request.patientID,
+        patient: firebase.auth().currentUser?.uid,
         startTime: request.startTime,
         comments: request.comments,
         approvedStatus: false
       }
-
-      firebase.database().ref('appointments').push(appointmentRequest); //add try catch
+      
+      const res = db.collection('appointments').add(appointmentRequest);
     }
   },
   modules: {},

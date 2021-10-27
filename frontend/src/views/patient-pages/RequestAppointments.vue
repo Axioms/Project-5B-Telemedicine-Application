@@ -26,9 +26,26 @@
               color="success"
               @click="submitAppointmentRequest()"
               large
-        >Schedule</v-btn> {{ selectedTime }} {{ selectedDay }}
+        >Schedule</v-btn> {{ selectedDay }}T{{ selectedTime }}Z
 
    </v-card>
+
+   <v-snackbar
+        v-model="snackbar"
+        :timeout="2000"
+      >
+        Your appointment request has been submitted!
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="success"
+            text
+            v-bind="attrs"
+            @click="snackbar = false"
+          >
+            Close
+          </v-btn>
+        </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -48,12 +65,21 @@ export default class scheduleCall extends Vue {
   selectedTime = null;
   selectedDay = null;
   apptComments = null;
+  snackbar = false;
 
   validApptRequest () {
     return !((this.selectedTime !== null) && (this.selectedDay !== null));
   }
   submitAppointmentRequest() {
-
+    const request = {
+      startTime: this.selectedDay+"T"+this.selectedTime+"Z",
+      comments: this.apptComments
+    }
+    this.$store.dispatch('createAppointmentRequest', request);
+    this.selectedDay = null;
+    this.selectedTime = null;
+    this.apptComments = null;
+    this.snackbar = true;
   }
 }
 </script>
