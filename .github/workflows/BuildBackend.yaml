@@ -22,10 +22,9 @@ jobs:
       working-directory: ./backend
       run: cargo build --verbose --release
 
-    - name: Pack
-      - run: zip ./application.zip ./backend/target/release/Project-5B-Telemedicine-Application*
-    - name: Upload
-      - uses: actions/upload-artifact@v2
-        with:
-          name: artifact
-          path: ./application.zip
+    - name: Pack and Upload
+      run: zip ./application.zip ./backend/target/release/Project-5B-Telemedicine-Application*
+    - uses: actions/upload-artifact@v2
+      with:
+        name: artifact
+        path: ./application.zip
