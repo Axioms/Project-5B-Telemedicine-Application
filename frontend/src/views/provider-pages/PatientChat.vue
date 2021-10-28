@@ -22,7 +22,6 @@ export default class Account extends Vue
 
   sendMessage ()
   {
-    console.log("dan");
     this.chatBox = this.chatBox+this.$store.state.profileFirstName+": "+this.messageBox+"\n";
     this.messageBox = "";
 

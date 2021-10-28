@@ -18,9 +18,9 @@
     <v-navigation-drawer
         v-model="drawer"
         temporary
-        absolute
         clipped
         app
+        fixed
     >
       <v-list
           nav
@@ -157,6 +157,8 @@
 
         </v-list-item-group>
       </v-list>
+
+
     </v-navigation-drawer>
 
     <v-main>
