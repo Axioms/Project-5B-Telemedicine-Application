@@ -20,4 +20,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build
       working-directory: ./backend
-      run: cargo build --verbose
+      run: cargo build --verbose --release
+
+    - name: Pack
+      - run: zip ./application.zip ./backend/target/release/Project-5B-Telemedicine-Application*
+    - name: Upload
+      - uses: actions/upload-artifact@v2
+        with:
+          name: artifact
+          path: ./application.zip
