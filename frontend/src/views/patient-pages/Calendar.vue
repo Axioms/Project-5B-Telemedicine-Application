@@ -5,7 +5,7 @@
 
           {{ $refs.calendar.title }}
         </h1>    
-          <v-sheet height="600">
+          <v-sheet height="500%">
             <v-calendar
               ref="calendar"
               :events="events"
