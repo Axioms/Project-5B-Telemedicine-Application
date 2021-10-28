@@ -1,8 +1,10 @@
+name: Node
+on:
   push:
-    branches:
-      - frontend
-    tags: # Always, regardless of paths above
-        - '*'
+    branches: [ backend ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
   build_frontend:
 
