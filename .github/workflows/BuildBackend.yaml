@@ -23,9 +23,9 @@ jobs:
       run: cargo build --verbose --release
 
     - name: Pack
-      - run: zip ./application.zip ./backend/target/release/Project-5B-Telemedicine-Application*
+      run: zip ./application.zip ./backend/target/release/Project-5B-Telemedicine-Application*
     - name: Upload
-      - uses: actions/upload-artifact@v2
-        with:
-          name: artifact
-          path: ./application.zip
+    - uses: actions/upload-artifact@v2
+      with:
+        name: artifact
+        path: ./application.zip
