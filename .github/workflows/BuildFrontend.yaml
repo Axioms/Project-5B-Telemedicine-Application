@@ -1,7 +1,7 @@
 name: Node
 on:
   push:
-    branches: [ backend ]
+    branches: [ frontend ]
   pull_request:
     branches: [ main ]
 
