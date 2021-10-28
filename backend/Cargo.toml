@@ -1,6 +1,6 @@
 [package]
 name = "Project-5B-Telemedicine-Application"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Axioms"]
 edition = "2018"
 
