@@ -1,19 +1,31 @@
 name: Build Frontend
-on: [push]
-  branches:
-    - frontend
-      tags: # Always, regardless of paths above
-      - '*'
+on: 
+  push:
+    branches:
+      - frontend
+    tags: # Always, regardless of paths above
+        - '*'
 jobs:
   build_frontend:
-    runs-on: pi
-    name: Build frontend
+
+    runs-on: [self-hosted, linux]
+
+    strategy:
+      matrix:
+        node-version: [15.x]
+
     steps:
-    - uses: actions/checkout@v2
-      working-directory: ./frontend
-    - id: Build-Frontend
-      uses: xRealNeon/VuePagesAction@1.0.0
-      with:
-        username: 'Axioms'
-        reponame: 'Project-5B-Telemedicine-Application'
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm ci
+      - name: Building Site
+        working-directory: ./frontend
+        run: npm run build --if-present
+      - name: Testing Site
+        working-directory: ./frontend
+      - run: npm test
