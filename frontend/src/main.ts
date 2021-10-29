@@ -8,12 +8,12 @@ import "firebase/compat/auth"
 import "firebase/compat/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAfKqd0yI5eI2q7bR5fV1Vw1o-W6ruFIWE",
-  authDomain: "telemedicineapp-afe1d.firebaseapp.com",
-  projectId: "telemedicineapp-afe1d",
-  storageBucket: "telemedicineapp-afe1d.appspot.com",
-  messagingSenderId: "817419948074",
-  appId: "1:817419948074:web:b5a31d686b40e7eb77f353"
+  apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+  authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.VUE_APP_FIREBASE_APP_ID
 };
 
 // Initialize Firebase
