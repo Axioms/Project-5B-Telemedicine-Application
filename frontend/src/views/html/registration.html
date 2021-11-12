@@ -1,0 +1,84 @@
+<div class="registration">
+
+        <v-row justify="center">
+            <v-col
+                    cols="12"
+                    sm="10"
+                    md="8"
+                    lg="6"
+            >
+                <v-card ref="form">
+                    <v-card-text>
+                        <v-text-field
+                                ref="firstname"
+                                v-model="firstname"
+                                :rules="[() => !!firstname || 'This field is required']"
+                                label="First Name"
+                                placeholder="John"
+                                required
+                                outlined
+                        ></v-text-field>
+                        <v-text-field
+                                ref="lastname"
+                                v-model="lastname"
+                                :rules="[() => !!lastname || 'This field is required']"
+                                label="Last Name"
+                                placeholder="Doe"
+                                outlined
+                                required
+                        ></v-text-field>
+                        <v-text-field
+                                ref="email"
+                                label="Email"
+                                v-model="email"
+                                :rules="[() => !!email || 'This field is required']"
+                                outlined
+                                required
+                        ></v-text-field>
+
+                        <v-text-field type="password"
+                            ref="password"
+                            v-model="password"
+                            :rules="[() => !!password || 'This field is required']"
+                            label="Password"
+                          :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                          :type="show1 ? 'text' : 'password'"
+                          outlined
+                          counter
+                          @click:append="show1 = !show1"
+                          required
+                        ></v-text-field>
+
+                        <input type="radio" id="patient" value="Patient" v-model="picked" required>
+                        <label for="patient">Patient</label>
+                        <br>
+                        <input type="radio" id="provider" value="Provider" v-model="picked">
+                        <label for="provider">Provider</label>
+                        <br>
+                        <span>Picked: {{ picked }}</span>
+
+                    </v-card-text>
+                    <div v-show="error" class ="error" style="color: black">{{this.errorMsg}}</div>
+
+
+
+                    <v-divider class="mt-12"></v-divider>
+                    <v-card-actions>
+                        <v-btn text ref = "cancel" @click="cancelButtonClicked">
+                            Cancel
+                        </v-btn>
+                        <v-spacer></v-spacer>
+
+                        <v-btn
+                                color="success"
+                                text
+                                @click.prevent="signUpRequest"
+                        >
+                            Submit
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-col>
+        </v-row>
+
+</div>

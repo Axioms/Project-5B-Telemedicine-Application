@@ -2,11 +2,8 @@
 
 .vscode
 
-### GENERATED FILES ###
-
-*.rsa
-*.pem
-settings.json
+backend/
+.idea/
 
 ### NODE ###
 
