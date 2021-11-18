@@ -2,7 +2,7 @@
   <div class="scheduleCall">
     <v-card elevation="0" class="mx-auto mt-5" max-width="60%">
         <h1 class="text-center mt-4">Schedule Call</h1>
-        
+
         <v-spacer></v-spacer>
 
         <v-autocomplete
@@ -57,7 +57,7 @@
             ></v-time-picker>
           </v-menu>
 
-          <v-btn 
+          <v-btn
             color="success"
             label="Submit call time"
             @click="confirmScheduling"
@@ -72,7 +72,7 @@
         :timeout="timeout"
       >
         Your call has been scheduled!
-  
+
         <template v-slot:action="{ attrs }">
           <v-btn
             color="success"

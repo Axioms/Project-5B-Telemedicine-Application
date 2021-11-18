@@ -1,47 +1,9 @@
 <div class="docChat">
     <v-card elevation="0" class="mx-auto mt-5" max-width="60%">
         <h1 class="text-center mt-4">Doctor Chat</h1>
-        <v-form>
-            <v-textarea
-                    v-model="chatBox"
-                    outlined
-                    readonly
-                    no-resize
-            >
-                <v-row rows ="1">
-                    <v-col cols="8">
-                    </v-col>
-                </v-row>
-            </v-textarea>
-
-            <v-row rows ="1">
-                <v-col cols="11">
-
-                    <v-text-field
-                            ref="messageBox"
-                            v-model="messageBox"
-                            outlined
-                            clearable
-                            label="Message"
-                            type="text"
-                    >
-                    </v-text-field>
-                </v-col>
-            </v-row>
-            <v-btn
-                    color="success"
-                    @click.prevent="sendMessage"
-                    large
-            >
-                Send
-            </v-btn>
-
-            <v-card-actions>
-
-            </v-card-actions>
-
-
-        </v-form>
+        <iframe allowusermedia allow = "microphone *; camera *; autoplay;"  style = "width: 100%; height: 600px;" src = "https://go.meetingrooms.net/live/telemedicineapp/room1?auth=1"></iframe>
 
     </v-card>
+
+
 </div>
