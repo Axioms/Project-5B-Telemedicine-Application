@@ -21,6 +21,7 @@ import ProviderCalendar from "../views/provider-pages/Calendar.vue";
 import ScheduleCall from "../views/provider-pages/ScheduleCall.vue";
 import PatientChat from "../views/provider-pages/PatientChat.vue";
 import ProviderResources from "../views/provider-pages/Resources.vue";
+import SubmitReports from "../views/provider-pages/SubmitReports.vue";
 
 Vue.use(VueRouter);
 
@@ -104,6 +105,11 @@ const routes: Array<RouteConfig> = [
     path: "/providerResources",
     name: "Resources",
     component: ProviderResources
+  },
+  {
+    path: "/submitReports",
+    name: "Submit Reports",
+    component: SubmitReports
   },
 
   // Login/registration
