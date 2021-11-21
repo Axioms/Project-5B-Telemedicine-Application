@@ -11,6 +11,7 @@
             color="blue"
             v-model="selectedPatient"
             label="Select a patient to send report to"
+
         ></v-autocomplete>
 
         <v-textarea
@@ -45,15 +46,67 @@
 <script lang="ts">
 import Vue from "vue";
 import Options from "vue-class-component";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth"
+import "firebase/compat/firestore";
+import db from "@/main.ts"
 
 
 @Options({
   props: {
-    
+
   },
 })
 export default class submitReports extends Vue {
-    isSaving = false;
+  isSaving = false;
+  selectedPatient = "";
+  patients = "";
+
+
+  mounted() {
+    this.addPatient();
+  }
+
+  addPatient()
+  {
+
+    console.log("Hello world");
+    console.log("Hello world");
+
+    db.collection('users').where("usertype", "==", "Patient")
+        .get()
+        .then(querySnapshot => {
+          const users = querySnapshot.docs.map(doc => doc.data().firstname+" "+doc.data().lastname).sort() as unknown
+          const users2 = users as string
+          this.patients = users2;
+        })
+
+
+
+
+    /*
+    db.collection("users").where("usertype", "==", "Patient")
+        .get()
+        .then((querySnapshot) => {
+          const users = querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            //this.patients = users;
+          });
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        })*/
+    //this.patients = " dan";
+
+
+
+
+  }
+
 }
+
+
+
 </script>
 
