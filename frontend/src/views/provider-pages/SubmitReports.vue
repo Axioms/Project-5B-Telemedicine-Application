@@ -69,10 +69,6 @@ export default class submitReports extends Vue {
 
   addPatient()
   {
-
-    console.log("Hello world");
-    console.log("Hello world");
-
     db.collection('users').where("usertype", "==", "Patient")
         .get()
         .then(querySnapshot => {
@@ -80,28 +76,6 @@ export default class submitReports extends Vue {
           const users2 = users as string
           this.patients = users2;
         })
-
-
-
-
-    /*
-    db.collection("users").where("usertype", "==", "Patient")
-        .get()
-        .then((querySnapshot) => {
-          const users = querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-            //this.patients = users;
-          });
-        })
-        .catch((error) => {
-          console.log("Error getting documents: ", error);
-        })*/
-    //this.patients = " dan";
-
-
-
-
   }
 
 }
