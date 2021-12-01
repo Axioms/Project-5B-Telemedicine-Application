@@ -38,21 +38,17 @@ import db from "@/main.ts"
 })
 export default class Reports extends Vue {
   
-  testReports = [];
+  testReports: any = [];
 
  async mounted() {
     this.testReports = await this.getReports()
-    
-    console.log(this.getReports());
   }
 
   getReports() {
     return db.collection('reports').where("patientID", "==", this.$store.state.profileID)
         .get()
-        .then(function(querySnapshot) {
-            
+        .then(function(querySnapshot) { 
             return querySnapshot.docs.map(doc => doc.data())
-            
         })
         
   }
