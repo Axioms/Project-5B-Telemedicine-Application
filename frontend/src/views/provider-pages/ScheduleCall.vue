@@ -90,7 +90,10 @@
 <script lang="ts">
 import Vue from "vue";
 import Options from "vue-class-component";
-
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth"
+import "firebase/compat/firestore";
+import db from "@/main.ts"
 
 @Options({
   props: {
@@ -99,7 +102,7 @@ import Options from "vue-class-component";
 })
 export default class scheduleCall extends Vue {
   selectedPatient = "";
-  patients = ["John", "George", "Chris", "Alex"];
+  patients = "";
   selectedDate: any = "";
   selectedTime: any = "";
   snackbar = false;
@@ -113,5 +116,23 @@ export default class scheduleCall extends Vue {
     this.selectedPatient = "";
     this.snackbar = true;
   }
+
+  mounted() {
+    this.addPatient();
+  }
+
+  addPatient()
+  {
+    db.collection('users').where("usertype", "==", "Patient")
+        .get()
+        .then(querySnapshot => {
+          const users = querySnapshot.docs.map(doc => doc.data().firstname+" "+doc.data().lastname).sort() as unknown
+          const users2 = users as string
+          this.patients = users2;
+        })
+  }
 }
+
+
 </script>
+

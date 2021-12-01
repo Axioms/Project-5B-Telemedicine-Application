@@ -171,7 +171,13 @@
     <v-main>
       <router-view />
     </v-main>
+
+
+
   </v-app>
+
+
+
 </template>
 
 <script lang="ts">
@@ -212,7 +218,6 @@ export default Vue.extend({
       if(user)
       {
         this.$store.dispatch("getCurrentUser");
-        console.log(this.$store.state.profileEmail);
       }
     })
   },
@@ -230,3 +235,13 @@ export default Vue.extend({
 
 });
 </script>
+
+<style>
+
+
+#app {
+
+  background: url('./assets/background.jpg');
+  background-size: cover;
+}
+</style>

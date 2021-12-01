@@ -69,7 +69,6 @@ export default class ScheduleAppointments extends Vue {
   headers = [ {
       text: 'Patient',
       align: 'start',
-      sortable: false,
       value: 'name',
     },
     { text: 'Comments', value: 'comments'},
