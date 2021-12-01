@@ -89,6 +89,9 @@ export default new Vuex.Store({
       }
       
       const res = db.collection('appointments').add(appointmentRequest);
+    },
+    createReport(context, request){
+      const res = db.collection('reports').add(request);
     }
   },
   modules: {},
