@@ -1,6 +1,6 @@
 <template>
   <div class="resources">
-    <v-card elevation="0" class="mx-auto mt-5" max-width="60%">
+    <v-card elevation="0" class="mx-auto mt-5 pa-7" max-width="60%">
         <v-row justify="center" class="mt-5">
         <h1 class="mt-4">Frequently Asked Questions</h1>
           <v-expansion-panels accordion>

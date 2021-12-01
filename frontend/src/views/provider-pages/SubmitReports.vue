@@ -1,6 +1,6 @@
 <template>
   <div class="submitReports">
-     <v-card elevation="0" class="mx-auto mt-5" max-width="60%">
+     <v-card elevation="0" class="mx-auto mt-5 pa-6" max-width="60%" >
         <h1 class="text-center mt-4">Submit a Report</h1>
 
         <v-spacer></v-spacer>
