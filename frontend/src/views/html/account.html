@@ -33,6 +33,7 @@
                             required
                     ></v-text-field>
 
+                    <h3>Medical Information</h3>
                     <v-text-field
                             label="Birthday"
                             v-model="newBirthday"
@@ -41,20 +42,82 @@
                             required
                             placeholder="mm/dd/yyyy"
                     ></v-text-field>
+                    <v-text-field
+                            label="Social Security Number"
+                            v-model="newSSN"
+                            :rules="[() => !!ssn]"
+                            outlined
+                            placeholder="###-##-####"
+                    ></v-text-field>
 
-
+                    <h3>Insurance Information (If Applicable)</h3>
                     <v-text-field
                             label="Insurance"
                             v-model="newInsurance"
-                            :rules="[() => !!insurance || 'This field is required']"
+                            :rules="[() => !!insurance]"
                             outlined
-                            required
                             placeholder="Blue Cross Blue Shield"
                     ></v-text-field>
+                    <v-text-field
+                            label="Insurance Group"
+                            v-model="newInsuranceGroup"
+                            :rules="[() => !!insurancegroup]"
+                            outlined
+                    ></v-text-field>
+                    <v-text-field
+                            label="Insurance Member ID"
+                            v-model="newMemberID"
+                            :rules="[() => !!memberid]"
+                            outlined
+                    ></v-text-field>
+                    <v-text-field
+                            label="RxBIN"
+                            v-model="newRxBIN"
+                            :rules="[() => !!rxbin]"
+                            outlined
+                            placeholder="######"
+                    ></v-text-field>
+                    <v-text-field
+                            label="RxPCN"
+                            v-model="newRxPCN"
+                            :rules="[() => !!rxpcn]"
+                            outlined
+                            placeholder="XX"
+                    ></v-text-field>
+                    <v-text-field
+                            label="RxGRP"
+                            v-model="newRxGRP"
+                            :rules="[() => !!rxgrp]"
+                            outlined
+                            placeholder="XXXX"
+                    ></v-text-field>
 
+                    <h3>Payment Information (No Automatic Charges)</h3>
+                    <v-text-field
+                            label="Cardholder Name"
+                            v-model="newCardholderName"
+                            :rules="[() => !!cardholdername]"
+                            outlined
+                    ></v-text-field>
+                    <v-text-field
+                            label="Card Number"
+                            v-model="newCardNumber"
+                            :rules="[() => !!cardnumber]"
+                            outlined
+                    ></v-text-field>
+                    <v-text-field
+                            label="CVV"
+                            v-model="newCVV"
+                            :rules="[() => !!cvv]"
+                            outlined
+                    ></v-text-field>
+                    <v-text-field
+                            label="ExpirationDate"
+                            v-model="newExpirationDate"
+                            :rules="[() => !!expirationdate]"
+                            outlined
+                    ></v-text-field>
                 </v-card-text>
-
-
 
                 <v-divider class="mt-12"></v-divider>
                 <v-card-actions>
