@@ -21,7 +21,17 @@ export default new Vuex.Store({
     userType: null,
     user: null,
     birthday: "",
-    insurance: ""
+    insurance: "",
+    ssn: "",
+    insurancegroup: "",
+    memberid: "",
+    rxbin: "",
+    rxpcn: "",
+    rxgrp: "",
+    cardholdername: "",
+    cardnumber: "",
+    cvv: "",
+    expirationdate: ""
   },
   getters: {
     getIsLoggedIn: state => {
@@ -47,16 +57,35 @@ export default new Vuex.Store({
       state.profileLastName = doc.data().lastname;
       state.userType = doc.data().usertype;
       state.birthday = doc.data().birthday;
+      state.ssn = doc.data().ssn;
       state.insurance = doc.data().insurance;
-
+      state.insurancegroup = doc.data().insurancegroup;
+      state.memberid = doc.data().memberid;
+      state.rxbin = doc.data().rxbin;
+      state.rxpcn = doc.data().rxpcn;
+      state.rxgrp = doc.data().rxgrp;
+      state.cardholdername = doc.data().cardholdername;
+      state.cardnumber = doc.data().cardnumber;
+      state.cvv = doc.data().cvv;
+      state.expirationdate = doc.data().expirationdate;
     },
     // method for changing account info on "Account" page
-    changeAccountInfo(state, { firstName, lastName, email, birthday, insurance } ){
+    changeAccountInfo(state, { firstName, lastName, email, birthday, ssn, insurance, insurancegroup, memberid, rxbin, rxpcn, rxgrp, cardholdername, cardnumber, cvv, expirationdate } ){
       state.profileFirstName = firstName;
       state.profileLastName = lastName;
       state.profileEmail = email;
       state.birthday = birthday;
+      state.ssn = ssn;
       state.insurance = insurance;
+      state.insurancegroup = insurancegroup;
+      state.memberid = memberid;
+      state.rxbin = rxbin;
+      state.rxpcn = rxpcn;
+      state.rxgrp = rxgrp;
+      state.cardholdername = cardholdername;
+      state.cardnumber = cardnumber;
+      state.cvv = cvv;
+      state.expirationdate = expirationdate;
       
       const currentUser = firebase.auth().currentUser;
       currentUser?.updateEmail(email);
@@ -67,7 +96,17 @@ export default new Vuex.Store({
         lastname: lastName,
         email: email,
         birthday: birthday,
-        insurance: insurance
+        ssn: ssn,
+        insurance: insurance,
+        insurancegroup: insurancegroup,
+        memberid: memberid,
+        rxbin: rxbin,
+        rxpcn: rxpcn,
+        rxgrp: rxgrp,
+        cardholdername: cardholdername,
+        cardnumber: cardnumber,
+        cvv: cvv,
+        expirationdate: expirationdate
       })
     }
   },
