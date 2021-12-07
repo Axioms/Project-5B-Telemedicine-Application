@@ -20,23 +20,29 @@ export default class Account extends Vue
   newLastName = "";
   newEmail = "";
   snackbar = false;
+  newBirthday = "";
+
+
 
   firstname = this.$store.state.profileFirstName;
   email = this.$store.state.profileEmail;
   lastname = this.$store.state.profileLastName;
+  birthday = this.$store.state.birthday;
+
 
   mounted() {
     this.newFirstName = this.firstname;
     this.newLastName = this.lastname;
     this.newEmail = this.email;
+    this.newBirthday = this.birthday;
   }
 
   isDisabled() {
-    return !((this.newFirstName !== this.firstname) || (this.newLastName !== this.lastname) || (this.newEmail !== this.email));
+    return !((this.newFirstName !== this.firstname) || (this.newLastName !== this.lastname) || (this.newEmail !== this.email) || (this.newBirthday !== this.birthday));
   }
 
   submitAccountChanges(){
-    this.$store.commit('changeAccountInfo', {firstName: this.newFirstName, lastName: this.newLastName, email: this.newEmail});
+    this.$store.commit('changeAccountInfo', {firstName: this.newFirstName, lastName: this.newLastName, email: this.newEmail, birthday: this.newBirthday});
     this.snackbar = true;
   }
 }

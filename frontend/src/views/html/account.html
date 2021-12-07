@@ -32,6 +32,16 @@
                             outlined
                             required
                     ></v-text-field>
+
+                    <v-text-field
+                            label="Birthday"
+                            v-model="newBirthday"
+                            :rules="[() => !!birthday || 'This field is required']"
+                            outlined
+                            required
+                            placeholder="mm/dd/yyyy"
+                    ></v-text-field>
+
                 </v-card-text>
 
 

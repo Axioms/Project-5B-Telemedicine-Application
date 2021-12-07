@@ -20,6 +20,7 @@ export default new Vuex.Store({
     profileID: null,
     userType: null,
     user: null,
+    birthday: "",
   },
   getters: {
     getIsLoggedIn: state => {
@@ -44,12 +45,15 @@ export default new Vuex.Store({
       state.profileFirstName = doc.data().firstname;
       state.profileLastName = doc.data().lastname;
       state.userType = doc.data().usertype;
+      state.birthday = doc.data().birthday;
+
     },
     // method for changing account info on "Account" page
-    changeAccountInfo(state, { firstName, lastName, email } ){
+    changeAccountInfo(state, { firstName, lastName, email, birthday } ){
       state.profileFirstName = firstName;
       state.profileLastName = lastName;
       state.profileEmail = email;
+      state.birthday = birthday;
       
       const currentUser = firebase.auth().currentUser;
       currentUser?.updateEmail(email);
@@ -59,6 +63,7 @@ export default new Vuex.Store({
         firstname: firstName,
         lastname: lastName,
         email: email,
+        birthday: birthday
       })
     }
   },

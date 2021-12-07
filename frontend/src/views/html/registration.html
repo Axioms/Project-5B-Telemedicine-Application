@@ -36,6 +36,17 @@
                                 required
                         ></v-text-field>
 
+
+                        <v-text-field
+                                ref="birthday"
+                                label="birthday"
+                                v-model="birthday"
+                                :rules="[() => !!birthday || 'This field is required']"
+                                outlined
+                                required
+                                placeholder="mm/dd/yyyy"
+                        ></v-text-field>
+
                         <v-text-field type="password"
                             ref="password"
                             v-model="password"

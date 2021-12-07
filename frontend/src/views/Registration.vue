@@ -26,7 +26,7 @@ export default class Registration extends Vue {
   picked = '';
   error = false;
   errorMsg = "";
-
+  birthday = "";
 
   mounted() {
     this.$store.dispatch('setIsLoggedIn', false);
@@ -40,7 +40,7 @@ export default class Registration extends Vue {
   }
   async signUpRequest ()
   {
-    if(this.email == "" || this.firstname == "" || this.lastname == "" || this.password == "" ||this.picked == "")
+    if(this.email == "" || this.firstname == "" || this.lastname == "" || this.password == "" ||this.picked == "" ||this.birthday == "")
     {
       this.error = true;
       this.errorMsg = "Fill out all the fields"
@@ -62,6 +62,7 @@ export default class Registration extends Vue {
         lastname: this.lastname,
         usertype: this.picked,
         email: this.email,
+        birthday: this.birthday,
       })
       alert('Account created for '+this.email);
       this.error = false;
