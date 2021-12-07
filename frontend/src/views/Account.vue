@@ -22,6 +22,7 @@ export default class Account extends Vue
   snackbar = false;
   newBirthday = "";
   newInsurance = "";
+  newUserType = "";
 
 
 
@@ -30,6 +31,7 @@ export default class Account extends Vue
   lastname = this.$store.state.profileLastName;
   birthday = this.$store.state.birthday;
   insurance = this.$store.state.insurance;
+  usertype = this.$store.state.userType;
 
   mounted() {
     this.newFirstName = this.firstname;
@@ -37,6 +39,7 @@ export default class Account extends Vue
     this.newEmail = this.email;
     this.newBirthday = this.birthday;
     this.newInsurance = this.insurance;
+    this.newUserType = this.usertype;
   }
 
   isDisabled() {
@@ -44,7 +47,7 @@ export default class Account extends Vue
   }
 
   submitAccountChanges(){
-    this.$store.commit('changeAccountInfo', {firstName: this.newFirstName, lastName: this.newLastName, email: this.newEmail, birthday: this.newBirthday, insurance: this.newInsurance});
+    this.$store.commit('changeAccountInfo', {firstName: this.newFirstName, lastName: this.newLastName, email: this.newEmail, birthday: this.newBirthday, insurance: this.newInsurance, usertype: this.newUserType});
     this.snackbar = true;
   }
 }

@@ -51,12 +51,13 @@ export default new Vuex.Store({
 
     },
     // method for changing account info on "Account" page
-    changeAccountInfo(state, { firstName, lastName, email, birthday, insurance } ){
+    changeAccountInfo(state, { firstName, lastName, email, birthday, insurance, usertype } ){
       state.profileFirstName = firstName;
       state.profileLastName = lastName;
       state.profileEmail = email;
       state.birthday = birthday;
       state.insurance = insurance;
+      state.userType = usertype;
       
       const currentUser = firebase.auth().currentUser;
       currentUser?.updateEmail(email);
@@ -67,7 +68,8 @@ export default new Vuex.Store({
         lastname: lastName,
         email: email,
         birthday: birthday,
-        insurance: insurance
+        insurance: insurance,
+        usertype: usertype
       })
     }
   },
