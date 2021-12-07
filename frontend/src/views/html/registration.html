@@ -47,6 +47,19 @@
                                 placeholder="mm/dd/yyyy"
                         ></v-text-field>
 
+
+                        <v-spacer></v-spacer>
+
+                        <v-autocomplete
+                                :items="insurance"
+                                color="blue"
+                                v-model="selectedInsurance"
+                                label="Select a provider"
+                                outlined
+                                required
+
+                        ></v-autocomplete>
+
                         <v-text-field type="password"
                             ref="password"
                             v-model="password"

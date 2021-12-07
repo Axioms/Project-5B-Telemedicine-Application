@@ -21,6 +21,7 @@ export default class Account extends Vue
   newEmail = "";
   snackbar = false;
   newBirthday = "";
+  newInsurance = "";
 
 
 
@@ -28,21 +29,22 @@ export default class Account extends Vue
   email = this.$store.state.profileEmail;
   lastname = this.$store.state.profileLastName;
   birthday = this.$store.state.birthday;
-
+  insurance = this.$store.state.insurance;
 
   mounted() {
     this.newFirstName = this.firstname;
     this.newLastName = this.lastname;
     this.newEmail = this.email;
     this.newBirthday = this.birthday;
+    this.newInsurance = this.insurance;
   }
 
   isDisabled() {
-    return !((this.newFirstName !== this.firstname) || (this.newLastName !== this.lastname) || (this.newEmail !== this.email) || (this.newBirthday !== this.birthday));
+    return !((this.newFirstName !== this.firstname) || (this.newLastName !== this.lastname) || (this.newEmail !== this.email) || (this.newBirthday !== this.birthday) || this.newInsurance !== this.insurance);
   }
 
   submitAccountChanges(){
-    this.$store.commit('changeAccountInfo', {firstName: this.newFirstName, lastName: this.newLastName, email: this.newEmail, birthday: this.newBirthday});
+    this.$store.commit('changeAccountInfo', {firstName: this.newFirstName, lastName: this.newLastName, email: this.newEmail, birthday: this.newBirthday, insurance: this.newInsurance});
     this.snackbar = true;
   }
 }

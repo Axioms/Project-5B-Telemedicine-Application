@@ -42,6 +42,16 @@
                             placeholder="mm/dd/yyyy"
                     ></v-text-field>
 
+
+                    <v-text-field
+                            label="Insurance"
+                            v-model="newInsurance"
+                            :rules="[() => !!insurance || 'This field is required']"
+                            outlined
+                            required
+                            placeholder="Blue Cross Blue Shield"
+                    ></v-text-field>
+
                 </v-card-text>
 
 

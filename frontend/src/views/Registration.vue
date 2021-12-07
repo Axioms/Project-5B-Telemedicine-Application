@@ -27,6 +27,23 @@ export default class Registration extends Vue {
   error = false;
   errorMsg = "";
   birthday = "";
+  insurance = ["Ambetter from Peach State Health Plan",
+    "Anthem Blue Cross and Blue Shield",
+    "Bright Health",
+    "Friday Health Plans",
+    "HS - Aetna CVS Health",
+    "HS - Alliant Health Plans",
+    "HS - Ambetter from Peach State Health Plan",
+    "HS - Blue Cross Blue Shield Healthcare Plan of Georgia, Inc",
+    "HS - Bright HealthCare",
+    "HS - CareSource",
+    "HS - Cigna HealthCare of Georgia, Inc.",
+        "HS - Friday Health Plans",
+    "HS - Kaiser Permanente",
+    "HS - Oscar Health Plan of Georgia",
+    "HS - UnitedHealthcare",
+    "Kaiser Permanente GA"];
+  selectedInsurance = "";
 
   mounted() {
     this.$store.dispatch('setIsLoggedIn', false);
@@ -40,7 +57,7 @@ export default class Registration extends Vue {
   }
   async signUpRequest ()
   {
-    if(this.email == "" || this.firstname == "" || this.lastname == "" || this.password == "" ||this.picked == "" ||this.birthday == "")
+    if(this.email == "" || this.firstname == "" || this.lastname == "" || this.password == "" ||this.picked == "" ||this.birthday == "" || this.selectedInsurance == "")
     {
       this.error = true;
       this.errorMsg = "Fill out all the fields"
@@ -63,6 +80,7 @@ export default class Registration extends Vue {
         usertype: this.picked,
         email: this.email,
         birthday: this.birthday,
+        insurance: this.selectedInsurance
       })
       alert('Account created for '+this.email);
       this.error = false;
