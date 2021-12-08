@@ -95,8 +95,8 @@ export default class submitReports extends Vue {
     db.collection('users').where("usertype", "==", "Patient")
         .get()
         .then(querySnapshot => {
-          const users = querySnapshot.docs.map(doc => doc.data().firstname+" "+doc.data().lastname).sort() as unknown
-          const users2 = users as string
+          const users = querySnapshot.docs.map(doc => doc.data().firstname+" "+doc.data().lastname).sort() as unknown;
+          const users2 = users as string;
           this.patients = users2;
         })
   }
@@ -118,7 +118,7 @@ export default class submitReports extends Vue {
     var reportDate = new Date().toString();
 
     if(this.imageData){
-      this.uploadImage(patientID, providerID, reportDate)
+      this.uploadImage(patientID, providerID, reportDate);
     }
     else{
       const request = {
